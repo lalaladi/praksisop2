@@ -171,10 +171,11 @@ a). Pada _/root/.bashrc_
 apt-get update
 apt-get install bind9 -y
 ```
+
 <br>
 b). Pembuatan Domain 
-<br>
 
+<br>
 Pada terminal Yudhistira ketik _nano /etc/bind/named.conf.local_ 
 
 <br>
@@ -186,7 +187,7 @@ zone "abimanyu.b23.com" {
     };
 ```
 
-Pada terminal :
+Pada terminal 
 ```bash
 mkdir /etc/bind/jarkom
 cp /etc/bind/db.local /etc/bind/jarkom/abimanyu

@@ -353,7 +353,7 @@ cp /etc/bind/db.local /etc/bind/delegasi/baratayuda
 ![13](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/119245b2-ac08-42d9-b7b5-214e09e96e9d)
 <br>
 <br>Pada terminal : _service bind9 restart_ <br>
-**Bukti :** 
+**Bukti :** <br>
 ![14](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/5bbb0ae2-a5cd-4498-aa17-13d84245ff5b)
 <br>
 

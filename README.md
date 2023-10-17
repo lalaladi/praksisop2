@@ -554,8 +554,11 @@ server {
  }
 ```
 <br>
+d). Buat index.php di directory /var/www.arjuna.b23.com
 
-d). Pada terminal : 
+![35](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/b8d77143-62f5-4111-9f60-aeadb6d95923)
+
+e). Pada terminal : 
 ```bash
 ln -s /etc/nginx/sites-available/lb-arjuna /etc/nginx/sites-enabled
 service nginx restart
@@ -631,6 +634,10 @@ Nano /etc/apache2/sites-available/ abimanyu.b23.com.conf
 ![24](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/0e79545c-5f1c-4d83-96ef-199b1160caf3)
 Bukti : pada nakula ketik lynx abimanyu.b23.com/home
 
+![36](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/c37ee4e3-ca3c-4312-9f14-30d6ed2a550c)
+
+![37](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/fc4354da-a9df-4f3e-b64a-526f68952f05)
+
 ## **Soal Nomor 13**
 Selain itu, pada subdomain www.parikesit.abimanyu.yyy.com, DocumentRoot disimpan pada /var/www/parikesit.abimanyu.yyy
 
@@ -669,10 +676,15 @@ _Service apache2 restart_
 
 **Bukti :** 
 Di nakula, ketik 
-```bash
-lynx parikesit.abimanyu.b23.com/public: 
+lynx parikesit.abimanyu.b23.com/public
+
+![38](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/0285070d-85a7-44bc-a49c-66313c4a49ed)
+
+<br>
+
 lynx parikesit.abimanyu.b23.com/secret
-```
+
+![39](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/55daeff2-d426-4957-9f30-07855b99aea4)
 
 ## **Soal Nomor 15**
 Buatlah kustomisasi halaman error pada folder /error untuk mengganti error kode pada Apache. Error kode yang perlu diganti adalah 404 Not Found dan 403 Forbidden.
@@ -697,6 +709,8 @@ lynx parikesit.abimanyu.b23.com/error/404
 lynx parikesit.abimanyu.b23.com/error/403
 ```
 
+![40](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/699de0a7-bd27-4814-a957-5ac90d948c27)
+
 ## **Soal Nomor 16**
 Buatlah suatu konfigurasi virtual host agar file asset www.parikesit.abimanyu.yyy.com/public/js menjadi 
 www.parikesit.abimanyu.yyy.com/js
@@ -711,8 +725,9 @@ service apache2 restart
 ![29](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/4054cbe1-9d03-45e5-ada8-93702bf5bdf4)
 
 b). Pada terminal pindah ke /var/www/parikesit.abimanyu.b23.com/public/js 
-<br>
-Bukti :  
+<br>  
+
+![41](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/d3d7f618-eae4-475b-a6b1-204b42dc2412)
 
 ## **Soal Nomor 17**
 Agar aman, buatlah konfigurasi agar www.rjp.baratayuda.abimanyu.yyy.com hanya dapat diakses melalui port 14000 dan 14400.
@@ -753,6 +768,7 @@ Nano index.php yang berisi :
 <br> 
 
 **Bukti :** 
+![42](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/ad7ff73e-5cf7-4515-bff1-37114f92489e)
 
 ## **Soal Nomor 18**
 Untuk mengaksesnya buatlah autentikasi username berupa “Wayang” dan password “baratayudayyy” dengan yyy merupakan kode kelompok. Letakkan DocumentRoot pada /var/www/rjp.baratayuda.abimanyu.yyy.
@@ -777,6 +793,9 @@ a). Masuk dir /etc/apache2/sites-available<br>
 b). nano abimanyu.b23.com.conf seperti  berikut : 
 
 ![33](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/679d7269-6257-423f-9e44-f99e1d685f29)
+
+maka 
+![43](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/ca2ac512-7c0a-4ee2-ae35-2faaced98d84)
 
 ## **Soal Nomor 20**
 Karena website www.parikesit.abimanyu.yyy.com semakin banyak pengunjung dan banyak gambar gambar random, maka ubahlah request gambar yang memiliki substring “abimanyu” akan diarahkan menuju abimanyu.png.

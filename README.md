@@ -177,9 +177,9 @@ b). Pembuatan Domain
 
 <br>
 Pada terminal Yudhistira ketik _nano /etc/bind/named.conf.local_ 
-
-<br>
 Isi dengan  
+<br>
+
 ```bash
 zone "abimanyu.b23.com" {
     type master;

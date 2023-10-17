@@ -323,7 +323,7 @@ nameserver 10.20.1.5
 Seperti yang kita tahu karena banyak sekali informasi yang harus diterima, buatlah subdomain khusus untuk perang yaitu baratayuda.abimanyu.yyy.com dengan alias www.baratayuda.abimanyu.yyy.com yang didelegasikan dari Yudhistira ke Werkudara dengan IP menuju ke Abimanyu dalam folder Baratayuda.
 
 <br>**Langkah Penyelesaian Soal 7 :** <br>
-a). Konfigurasi pada Yudhistira : <br>
+**a). Konfigurasi pada Yudhistira :** <br>
 edit _/etc/bind/jarkom/abimanyu_
 ![10](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/1038d860-a6d5-46cd-bffc-f168fb3b336d)
 <br>
@@ -332,7 +332,8 @@ Edit  /etc/bind/named.conf.options dengan comment dan tambahkan baris seperti ga
 ![11](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/0d1e1b8f-692c-4b6f-9a32-656f39ca89aa) 
 Pada terminal : _service bind9 restart_
 <br>
-b). Konfigurasi pada Werkudara<br>
+
+**b). Konfigurasi pada Werkudara<br>**
 Edit _/etc/bind/named.conf.options_ dengan comment dan tambahkan baris seperti gambar
 ![12](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/71d924b7-7524-4788-891c-efc8b59ed843)
 <br>

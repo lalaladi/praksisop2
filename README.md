@@ -352,8 +352,7 @@ cp /etc/bind/db.local /etc/bind/delegasi/baratayuda
 ```
 ![13](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/119245b2-ac08-42d9-b7b5-214e09e96e9d)
 <br>
-<br>
-Pada terminal : _service bind9 restart_ <br>
+<br>Pada terminal : _service bind9 restart_ <br>
 **Bukti :** 
 ![14](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/5bbb0ae2-a5cd-4498-aa17-13d84245ff5b)
 <br>
@@ -366,10 +365,14 @@ a). Edit _/etc/bind/delegasi/baratayuda_ di Werkudara
 ![15](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/5f481705-b350-420a-aa5e-7d8feb953757)	
 <br>
 b). Pada terminal Werkudara: _service bind9 restart_ <br>
-**Bukti :**
-![16](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/64d2c08d-905e-4954-9165-cadbbaa37cf1)
-![17](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/cf67ee44-8af6-4382-b674-cc2a762216e5)
+**Bukti :** 
 <br>
+![16](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/64d2c08d-905e-4954-9165-cadbbaa37cf1)
+
+<br>
+
+![17](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/cf67ee44-8af6-4382-b674-cc2a762216e5)
+
 
 ## **Soal Nomor 9**
 Arjuna merupakan suatu Load Balancer Nginx dengan tiga worker (yang juga menggunakan nginx sebagai webserver) yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Lakukan deployment pada masing-masing worker.

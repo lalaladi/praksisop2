@@ -785,8 +785,7 @@ Edit dengan nano /etc/apache2/sites-available/rjp.baratayuda.abimanyu.b23.com.co
 
 ![32](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/1183c66d-eda8-4cfb-9cb7-a3573d61f188)
 
-service apache2 restart<br>
-**Bukti :** 
+service apache2 restart
 
 ## **Soal Nomor 19**
 Buatlah agar setiap kali mengakses IP dari Abimanyu akan secara otomatis dialihkan ke www.abimanyu.yyy.com (alias)

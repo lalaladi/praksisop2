@@ -604,6 +604,7 @@ cp 000-default.conf abimanyu.b23.com.conf
 *ServerAlias www.abimanyu.b23.com
 ```
 
+![23](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/3ef30d10-b8af-48fe-a145-dd02d2cbc95a)
 Tambahkan pada /root/.bashrc : 
 ```bash
 	a2ensite abimanyu.b23.com
@@ -618,6 +619,8 @@ a). Pada terminal abimanyu
 ```bash
 Nano /etc/apache2/sites-available/ abimanyu.b23.com.conf	
 ```
+
+![24](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/0e79545c-5f1c-4d83-96ef-199b1160caf3)
 Bukti : pada nakula ketik lynx abimanyu.b23.com/home
 
 ## **Soal Nomor 13**
@@ -635,6 +638,8 @@ parikesit.abimanyu.b23.com.conf :
 *ServerAlias www.parikesit.abimanyu.b23.com
 ```
 
+![25](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/95f836f1-7435-4721-a8a2-13d346352b97)
+
 Tambahkan pada /root/.bashrc : 
 ```bash
 a2ensite parikesit.abimanyu.b23.com.conf
@@ -649,7 +654,10 @@ a). folder /public
 Pada terminal : _nano /etc/apache2/sites-available/parikesit.abimanyu.b23.com.conf_
 
 Tambahkan: 
+![26](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/cd9fb229-ec13-4fba-b44b-0f3286317191)
+
 _Service apache2 restart_
+<br>
 
 **Bukti :** 
 Di nakula, ketik 
@@ -667,7 +675,12 @@ a). Pada terminal abimanyu :
 cd /var/www/parikesit.abimanyu.b23.com
 nano .htaccess
 ```
+
+![27](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/73565215-4a60-4cb3-9474-8e7eb3998577)
+
 b). Edit nano /etc/apache2/sites-available/parikesit.abimanyu.b23.com.conf
+![28](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/b84f4f05-cfe6-4cbf-88cb-0b5d702779cf)
+
 c). service apache2 restart
 **Bukti :** 
 Pada nakula ketik : 
@@ -686,7 +699,11 @@ a). Pada terminal abimanyu
 nano /etc/apache2/sites-available/ parikesit.abimanyu.b23.com.conf	
 service apache2 restart
 ```
-b). Pada terminal pindah ke /var/www/parikesit.abimanyu.b23.com/public/js
+
+![29](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/4054cbe1-9d03-45e5-ada8-93702bf5bdf4)
+
+b). Pada terminal pindah ke /var/www/parikesit.abimanyu.b23.com/public/js 
+<br>
 Bukti :  
 
 ## **Soal Nomor 17**
@@ -699,8 +716,13 @@ a). Konfigurasi port 14000 dan 14400
 cp 000-default.conf rjp.baratayuda.abimanyu.b23.com.conf 
 nano rjp.baratayuda.abimanyu.b23.com.conf_ 
 
+![30](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/1972fffd-b928-49b5-a455-ef7b8fe90868)
+
 <br>
-- Tambahkan kedua port itu kedalam file ports.conf
+- Tambahkan kedua port itu kedalam file ports.conf <br>
+
+![31](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/6afc42a1-5172-4743-900a-6c96d3312e40)
+
 - Tambahkan pada /root/.bashrc : 
 ```bash
 a2ensite rjp.baratayuda.abimanyu.b23.com.conf
@@ -730,19 +752,23 @@ Untuk mengaksesnya buatlah autentikasi username berupa “Wayang” dan password
 <br>**Langkah Penyelesaian Soal 18** <br>
 a). Terminal abimanyu :
 <br>
-Masuk  cd /var/www/baratayuda.abimanyu.b23
-Nano .htpasswd : berisi password dari soal
-Edit dengan nano /etc/apache2/sites-available/rjp.baratayuda.abimanyu.b23.com.conf 
-service apache2 restart
+Masuk  cd /var/www/baratayuda.abimanyu.b23<br>
+Nano .htpasswd : berisi password dari soal<br>
+Edit dengan nano /etc/apache2/sites-available/rjp.baratayuda.abimanyu.b23.com.conf<br>
+
+![32](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/1183c66d-eda8-4cfb-9cb7-a3573d61f188)
+
+service apache2 restart<br>
 **Bukti :** 
 
 ## **Soal Nomor 19**
 Buatlah agar setiap kali mengakses IP dari Abimanyu akan secara otomatis dialihkan ke www.abimanyu.yyy.com (alias)
 
 <br>**Langkah Penyelesaian Soal 19** <br>
-a). Masuk dir /etc/apache2/sites-available
+a). Masuk dir /etc/apache2/sites-available<br>
 b). nano abimanyu.b23.com.conf seperti  berikut : 
 
+![33](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/679d7269-6257-423f-9e44-f99e1d685f29)
 
 ## **Soal Nomor 20**
 Karena website www.parikesit.abimanyu.yyy.com semakin banyak pengunjung dan banyak gambar gambar random, maka ubahlah request gambar yang memiliki substring “abimanyu” akan diarahkan menuju abimanyu.png.

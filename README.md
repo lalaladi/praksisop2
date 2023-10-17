@@ -687,7 +687,7 @@ lynx parikesit.abimanyu.b23.com/public
 
 lynx parikesit.abimanyu.b23.com/secret
 
-![39](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/55daeff2-d426-4957-9f30-07855b99aea4)
+![39](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/5da7b757-a20f-499c-b176-5e9117ae2c27)
 
 ## **Soal Nomor 15**
 Buatlah kustomisasi halaman error pada folder /error untuk mengganti error kode pada Apache. Error kode yang perlu diganti adalah 404 Not Found dan 403 Forbidden.
@@ -804,5 +804,11 @@ maka
 Karena website www.parikesit.abimanyu.yyy.com semakin banyak pengunjung dan banyak gambar gambar random, maka ubahlah request gambar yang memiliki substring “abimanyu” akan diarahkan menuju abimanyu.png.
 
 <br>**Langkah Penyelesaian Soal 20** <br>
+a). Masuk dir /var/www/parikesit.abimanyu.b23
+b)  nano .htacces seperti  berikut  
+<br>
 
+![44](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/c11f9e91-207b-4f3d-983e-6126ba4acc52)
+
+Perintah RewriteRule akan mengarahkan substring ‘abimanyu’ menuju ‘abimanyu.png
 

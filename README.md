@@ -223,8 +223,10 @@ zone "3.20.10.in-addr.arpa" {
     file "/etc/bind/jarkom/reverseabimanyu";
 };
 ```
+
 <br>
 b). Copy-kan file db.local
+
 ```bash
 cp /etc/bind/db.local /etc/bind/jarkom/reverseabimanyu
 ```
@@ -286,6 +288,7 @@ c). Konfigurasi Werkudara
 
 <br>
 - Pada terminal dan simpan di /root/.bashrc
+
 ```bash
 	apt-get update
 	apt-get install bind9 -y
@@ -377,8 +380,10 @@ a). Pada terminal dan /root/.bashrc :
 ```bash
 apt-get update && apt install nginx php php-fpm -y
 ```
-b). Pada terminal : _mkdir /var/www/arjuna.b23.com_ <br>
-c). Masuk ke directory /var/www/arjuna.b23.com dan buat file index.php yang berisi : 
+b). Pada terminal : _mkdir /var/www/arjuna.b23.com_
+<br>
+c). Masuk ke directory /var/www/arjuna.b23.com dan buat file index.php yang berisi
+
 ```bash
 <?php
  echo "Halo, Kamu berada di Prabukusuma"; #ganti sesuai node

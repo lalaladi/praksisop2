@@ -625,6 +625,10 @@ Tambahkan pada /root/.bashrc :
 	a2ensite abimanyu.b23.com
 	service apache2 restart
 ```
+**Bukti:**
+lynx abimanyu.b23
+
+![bukti 11](https://github.com/lalaladi/Jarkom-Modul-1-B23-2023/assets/90541607/e0c33327-6f66-444a-8c7e-bcc539e307d8)
 
 ## **Soal Nomor 12**
 Setelah itu ubahlah agar url www.abimanyu.yyy.com/index.php/home menjadi www.abimanyu.yyy.com/home.

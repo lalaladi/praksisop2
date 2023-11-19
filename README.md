@@ -403,3 +403,227 @@ subnet 10.20.4.0 netmask 255.255.255.0 {
 }
 service isc-dhcp-server restart
 ```
+
+## **Soal Nomor 7**
+Kepala suku dari Bredt Region memberikan resource server sebagai berikut:
+Lawine, 4GB, 2vCPU, dan 80 GB SSD.
+Linie, 2GB, 2vCPU, dan 50 GB SSD.
+Lugner 1GB, 1vCPU, dan 25 GB SSD.
+aturlah agar Eisen dapat bekerja dengan maksimal, lalu lakukan testing dengan 1000 request dan 100 request/second.
+ <br>
+<br>**Langkah Penyelesaian Soal 7 :** <br>
+Pada Eisen :
+```bash
+apt-get update
+apt-get install nginx -y
+service nginx start
+nano /etc/nginx/sites-available/lb-rr
+ # Default menggunakan Round Robin
+ upstream worker {
+ 	server 10.20.3.3; #IP lawine
+ 	server 10.20.3.2; #IP linie
+ 	server 10.20.3.1; #IP lugner
+
+ }
+
+ server {
+ 	listen 80;
+
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
+
+ 	root /var/www/html;
+
+    	index index.html index.htm index.nginx-debian.html;
+
+    	
+
+    	location / {
+        proxy_pass http://worker;
+    }
+ }
+ ```
+ ```bash
+ln -s /etc/nginx/sites-available/lb-rr /etc/nginx/sites-enabled
+rm -rf /etc/nginx/sites-enabled/default
+service nginx restart
+```
+<br>
+Pada DNS Server :
+```bash
+nano /etc/bind/jarkom/granz.channel.b23.com
+Edit : 
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     granz.channel.b23.com. root.granz.channel.b23.com. (
+                   2023111401          ; Serial
+                          604800          ; Refresh
+                            86400          ; Retry
+                         2419200         ; Expire
+                         604800 )        ; Negative Cache TTL
+;
+@       IN      NS      granz.channel.b23.com.
+@       IN      A       10.20.2.2         ;IP Eisen
+www     IN      CNAME   granz.channel.b23.com.
+@       IN      AAAA       ::1 
+```
+Lalu, service bind9 restart 
+<br>
+**Bukti : Jalankan Pengujian dengan Apache Benchmark (ab) pada Client Revolte**
+```bash
+ab -n 1000 -c 100 http://granz.channel.B03.com
+```
+![no 7](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/dbb9f82d-49d1-487f-98d5-5eca940ac0be) 
+
+## **Soal Nomor 8**
+Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut:
+a. Nama Algoritma Load Balancer
+b. Report hasil testing pada Apache Benchmark
+c. Grafik request per second untuk masing masing algoritma. 
+d. Analisis
+<br>
+<br>**Langkah Penyelesaian Soal 8 :** <br>
+Pada Eisen :<br>
+**lb-roundrobin**
+```bash
+nano /etc/nginx/sites-available/lb-rr
+# Default menggunakan Round Robin
+ upstream worker {
+ 	server 10.20.3.3; #IP lawine
+ 	server 10.20.3.2; #IP linie
+ 	server 10.20.3.1; #IP lugner
+
+ }
+ server {
+ 	listen 80;
+
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
+
+ 	root /var/www/html;
+
+    	index index.html index.htm index.nginx-debian.html;
+
+    	location / {
+        proxy_pass http://worker;
+    }
+ }
+ ```
+**lb-leastconnection**
+```bash
+nano /etc/nginx/sites-available/lb-lc
+ upstream worker {
+ 	server 10.20.3.3; #IP lawine
+ 	server 10.20.3.2; #IP linie
+ 	server 10.20.3.1; #IP lugner
+
+ }
+ server {
+ 	listen 80;
+
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
+
+ 	root /var/www/html;
+
+    	index index.html index.htm index.nginx-debian.html;
+
+    	location / {
+        proxy_pass http://worker;
+    }
+ }
+ ```
+**lb-IPhash**
+```bash
+nano /etc/nginx/sites-available/lb-ih
+ upstream worker {
+ 	server 10.20.3.3; #IP lawine
+ 	server 10.20.3.2; #IP linie
+ 	server 10.20.3.1; #IP lugner
+
+ }
+ server {
+ 	listen 80;
+
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
+
+ 	root /var/www/html;
+
+    	index index.html index.htm index.nginx-debian.html;
+
+    	location / {
+        proxy_pass http://worker;
+    }
+ }
+ ```
+**lb-leastconnection**
+```bash
+nano /etc/nginx/sites-available/lb-lc
+ upstream worker {
+ 	server 10.20.3.3; #IP lawine
+ 	server 10.20.3.2; #IP linie
+ 	server 10.20.3.1; #IP lugner
+
+ }
+ server {
+ 	listen 80;
+
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
+
+ 	root /var/www/html;
+
+    	index index.html index.htm index.nginx-debian.html;
+
+    	location / {
+        proxy_pass http://worker;
+    }
+ }
+ ```
+**lb-generichash**
+```bash
+nano /etc/nginx/sites-available/lb-gh
+ upstream worker {
+ 	server 10.20.3.3; #IP lawine
+ 	server 10.20.3.2; #IP linie
+ 	server 10.20.3.1; #IP lugner
+
+ }
+ server {
+ 	listen 80;
+
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
+
+ 	root /var/www/html;
+
+    	index index.html index.htm index.nginx-debian.html;
+
+    	location / {
+        proxy_pass http://worker;
+    }
+ }
+ ```
+```bash
+ln -s /etc/nginx/sites-available/lb-rr /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/lb-ih /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/lb-gh /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/lb-lc /etc/nginx/sites-enabled
+rm -rf /etc/nginx/sites-enabled/default
+service nginx restart
+```
+Lalu, pada ketiga worker lakukan perintah : 
+```bash
+ab -n 200 -c 10 -g http://granz.channel.B03.com
+```
+- Round Robin
+![no 7](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/dbb9f82d-49d1-487f-98d5-5eca940ac0be) 
+- Least Connection
+![least_Connection](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/2e429d44-278d-4a65-96cb-a3051efec785)
+- Ip Hash
+![Ip_Hash](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/208062f8-0385-44cd-8247-4fc481e38aab)
+- Generic Hash
+![Generic_Hash](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/62893811-63b3-4775-9b70-e20608ce1176)
+file output yang dihasilkan oleh Apache Benchmark (ab) saat melakukan pengujian :  <a href="[url](https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0)https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0">File_Data</a>
+
+## **Soal Nomor 9**
+Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire.
+<br>
+<br>**Langkah Penyelesaian Soal 9 :** <br>

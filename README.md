@@ -155,6 +155,7 @@ zone "granz.channel.b23.com" {
         type master;
         file "/etc/bind/jarkom/granz.channel.b23.com";
 };
+```
 ```bash
 mkdir /etc/bind/jarkom
 cp /etc/bind/db.local /etc/bind/jarkom/riegel.canyon.b23.com

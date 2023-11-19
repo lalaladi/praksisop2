@@ -756,7 +756,25 @@ ab -n 200 -c 10 -g http://granz.channel.B03.com
 <br>
 file output yang dihasilkan oleh Apache Benchmark (ab) saat melakukan pengujian :  <a href="https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0)https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0">File_Data</a>
 
-## **Soal Nomor 9**
+## **Soal Nomor 10**
 Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire.
 <br>
-<br>**Langkah Penyelesaian Soal 9 :** <br>
+<br>**Langkah Penyelesaian Soal 10 :** <br>
+
+## **Soal Nomor 11**
+Selanjutnya coba tambahkan konfigurasi autentikasi di LB dengan dengan kombinasi username: “netics” dan password: “ajkyyy”, dengan yyy merupakan kode kelompok. Terakhir simpan file “htpasswd” nya di /etc/nginx/rahasisakita/
+<br>
+<br>**Langkah Penyelesaian Soal 11 :** <br>
+Pada Eisen, lakukan perintah berikut : 
+```bash
+mkdir /etc/nginx/rahasisakita
+htpasswd -c /etc/nginx/rahasisakita/htpasswd netics
+```
+Dan masukkan passwordnya : **ajkb23**. Lalu tambahkan pada konfigurasi nginx : 
+```bash
+auth_basic "Restricted Content";
+auth_basic_user_file /etc/nginx/rahasisakita/htpasswd; 
+```
+service nginx restart<br>
+**Bukti : pada Revolte**
+lynx granz.channel.B03.com

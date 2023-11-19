@@ -138,7 +138,7 @@ iface eth0 inet static
 ```
 
 ## **Soal Nomor 1**
-Kali ini, kalian diminta untuk melakukan register domain berupa riegel.canyon.yyy.com untuk worker Laravel dan granz.channel.yyy.com untuk worker PHP mengarah pada worker yang memiliki IP [prefix IP].x.1.
+Kali ini, kalian diminta untuk melakukan register domain berupa riegel.canyon.yyy.com untuk worker Laravel dan granz.channel.yyy.com untuk worker PHP mengarah pada worker yang memiliki IP [prefix IP].x.1. <br>
 <br>**Langkah Penyelesaian Soal 1 :** <br>
 ```bash
 apt-get update
@@ -208,9 +208,10 @@ service bind9 restart
 <br>
 
 ## **Soal Nomor 2**
-Lakukan konfigurasi sesuai dengan peta yang sudah diberikan.
+Lakukan konfigurasi sesuai dengan peta yang sudah diberikan.<br>
 <br>**Langkah Penyelesaian Soal 2 :** <br>
 <u>DHCP Relay</u>
+<br>
 Kita lakukan konfigurasi DHCP Relay di router Aura dengan isi dari INTERFACES menyesuaikan jumlah interface output yang terhubung dengan client.
 ```bash
 apt-get update
@@ -231,6 +232,7 @@ net.ipv4.ip_forward=1
 service isc-dhcp-relay restart
 ```
 <u>DHCP Server</u>
+<br>
 Lakukan konfigurasi pada DHCP Server yaitu Himmei, seperti berikut :
 ```bash
 apt-get update
@@ -278,13 +280,14 @@ subnet 10.20.3.0 netmask 255.255.255.0 {
 service isc-dhcp-server restart
 
 <u>DNS Server</u>
+<br>
 ```bash
 apt-get update
  apt-get install bind9 -y
 ```
 
 ## **Soal Nomor 3**
-Client yang melalui Switch3 mendapatkan range IP dari [prefix IP].3.16 - [prefix IP].3.32 dan [prefix IP].3.64 - [prefix IP].3.80
+Client yang melalui Switch3 mendapatkan range IP dari [prefix IP].3.16 - [prefix IP].3.32 dan [prefix IP].3.64 - [prefix IP].3.80 <br>
 <br>**Langkah Penyelesaian Soal 3 :** <br>
 pada Himmel, tambahkan :
 ```bash
@@ -303,7 +306,7 @@ service isc-dhcp-server restart
 ![switch3](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/cf8557f3-a9d0-4fff-855c-9ba522382410)
 
 ## **Soal Nomor 4**
-Client yang melalui Switch4 mendapatkan range IP dari [prefix IP].4.12 - [prefix IP].4.20 dan [prefix IP].4.160 - [prefix IP].4.168 
+Client yang melalui Switch4 mendapatkan range IP dari [prefix IP].4.12 - [prefix IP].4.20 dan [prefix IP].4.160 - [prefix IP].4.168 <br>
 <br>**Langkah Penyelesaian Soal 4 :** <br>
 ```bash
 nano /etc/dhcp/dhcpd.conf
@@ -322,7 +325,7 @@ service isc-dhcp-server restart
 ![switch4](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/da1afa1d-9a7c-479f-9de3-cf789b2b21aa)
 
 ## **Soal Nomor 5**
-Client mendapatkan DNS dari Heiter dan dapat terhubung dengan internet melalui DNS tersebut
+Client mendapatkan DNS dari Heiter dan dapat terhubung dengan internet melalui DNS tersebut<br>
 <br>**Langkah Penyelesaian Soal 5 :** <br>
 Pada Himmei (DHCP Server) atur option domain-name-servers menjadi DNS Heiter:
 ```bash
@@ -349,7 +352,7 @@ subnet 10.20.3.0 netmask 255.255.255.0 {
 }
 service isc-dhcp-server restart
 ```
-Lakukan nano /etc/resolv.conf pada client di  switch3 dan switch4 apakah hasilnya sudah seperti, jika sudah seperti ini berarti pemberian nameserver berhasil
+Lakukan nano /etc/resolv.conf pada client di  switch3 dan switch4 apakah hasilnya sudah seperti, jika sudah seperti ini berarti pemberian nameserver berhasil<br>
 ![nameserver](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/39f3ec04-f2df-4fec-a652-8dfaf51ae92f)
 <br>
 Lalu pada Heiter (DNS Server), lakukan konfigurasi IP Forward : 
@@ -374,7 +377,7 @@ service bind9 restart
 ![ping google](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/5810c996-6d83-4832-8213-c3c7913ec9a2)
 
 ## **Soal Nomor 6**
-Lama waktu DHCP server meminjamkan alamat IP kepada Client yang melalui Switch3 selama 3 menit sedangkan pada client yang melalui Switch4 selama 12 menit. Dengan waktu maksimal dialokasikan untuk peminjaman alamat IP selama 96 menit 
+Lama waktu DHCP server meminjamkan alamat IP kepada Client yang melalui Switch3 selama 3 menit sedangkan pada client yang melalui Switch4 selama 12 menit. Dengan waktu maksimal dialokasikan untuk peminjaman alamat IP selama 96 menit <br>
 <br>**Langkah Penyelesaian Soal 6 :** <br>
 Pada Himmel  :
 ```bash

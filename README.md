@@ -403,15 +403,147 @@ subnet 10.20.4.0 netmask 255.255.255.0 {
 }
 service isc-dhcp-server restart
 ```
-
 ## **Soal Nomor 7**
+Pada masing-masing worker PHP, lakukan konfigurasi virtual host untuk website berikut dengan menggunakan php 7.3.
+<br>
+<br>**Langkah Penyelesaian Soal 7 :** <br>
+Pada Lawine:
+```bash
+apt-get update && apt-get install nginx
+apt-get install php7.3
+service nginx status
+mkdir /var/www/granz.channel.b23.com
+```
+nano /var/www/granz.channel.b23.com/index.php
+```bash
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Granz Channel Map</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Granz Channel</h1>
+        <p><?php
+            $hostname = gethostname();
+            echo "Request ini dihandle oleh: $hostname<br>"; ?> </p>
+        <p>Enter your name to validate:</p>
+        <form method="POST" action="index.php">
+            <input type="text" name="name" id="nameInput">
+            <button type="submit" id="submitButton">Submit</button>
+        </form>
+        <p id="greeting"><?php
+            if(isset($_POST['name'])) {
+                $name = $_POST['name'];
+                echo "Hello, $name!";
+            }
+        ?></p>
+    </div>
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+```
+nano /var/www/granz.channel.b23.com/info.php
+```bash
+<?php
+    phpinfo()
+?>
+```
+mkdir /var/www/granz.channel.b23.com/js
+nano /var/www/granz.channel.b23.com/js/script.js
+```bash
+document.addEventListener("DOMContentLoaded", function () {
+    var nameInput = document.getElementById("nameInput");
+    var submitButton = document.getElementById("submitButton");
+    var greeting = document.getElementById("greeting");
+
+
+    submitButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        var name = nameInput.value;
+        greeting.textContent = "Hello, " + name + "!";
+    });
+});
+```
+mkdir /var/www/granz.channel.b23.com/css
+nano /var/www/granz.channel.b23.com/css/styles.css
+```bash
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#greeting {
+    font-weight: bold;
+    color: #007BFF;
+    margin-top: 20px;
+}
+```
+```bash
+nano /etc/nginx/sites-available/default
+**Tambahkan pada bagian index :**
+index index.html index.htm index.php;
+**lalu uncomment beberapa bagian ini :**
+location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+#
+#   # With php-fpm (or other unix sockets):
+    fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+#   # With php-cgi (or other tcp sockets):
+#   fastcgi_pass 127.0.0.1:9000;
+}
+```
+```bash
+ ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+service php7.3-fpm start
+service nginx restart
+service php7.3-fpm restart
+```
+
+## **Soal Nomor 8**
 Kepala suku dari Bredt Region memberikan resource server sebagai berikut:
 Lawine, 4GB, 2vCPU, dan 80 GB SSD.
 Linie, 2GB, 2vCPU, dan 50 GB SSD.
 Lugner 1GB, 1vCPU, dan 25 GB SSD.
 aturlah agar Eisen dapat bekerja dengan maksimal, lalu lakukan testing dengan 1000 request dan 100 request/second.
  <br>
-<br>**Langkah Penyelesaian Soal 7 :** <br>
+<br>**Langkah Penyelesaian Soal 8 :** <br>
 Pada Eisen :
 ```bash
 apt-get update
@@ -476,14 +608,14 @@ ab -n 1000 -c 100 http://granz.channel.B03.com
 ```
 ![no 7](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/dbb9f82d-49d1-487f-98d5-5eca940ac0be) 
 
-## **Soal Nomor 8**
+## **Soal Nomor 9**
 Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut:
 a. Nama Algoritma Load Balancer
 b. Report hasil testing pada Apache Benchmark
 c. Grafik request per second untuk masing masing algoritma. 
 d. Analisis
 <br>
-<br>**Langkah Penyelesaian Soal 8 :** <br>
+<br>**Langkah Penyelesaian Soal 9 :** <br>
 Pada Eisen :<br>
 **lb-roundrobin**
 ```bash

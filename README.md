@@ -630,7 +630,7 @@ nano /etc/nginx/sites-available/lb-rr
  server {
  	listen 80;
 
-	server_name granz.channel.b23.com www.granz.channel.b23.com;
+	server_name granz.channel.b23.com;
 
  	root /var/www/html;
 
@@ -645,6 +645,7 @@ nano /etc/nginx/sites-available/lb-rr
 ```bash
 nano /etc/nginx/sites-available/lb-lc
  upstream worker {
+	least_conn;
  	server 10.20.3.3; #IP lawine
  	server 10.20.3.2; #IP linie
  	server 10.20.3.1; #IP lugner
@@ -653,7 +654,7 @@ nano /etc/nginx/sites-available/lb-lc
  server {
  	listen 80;
 
-	server_name granz.channel.b23.com www.granz.channel.b23.com;
+	server_name granz.channel.b23.com;
 
  	root /var/www/html;
 
@@ -668,6 +669,7 @@ nano /etc/nginx/sites-available/lb-lc
 ```bash
 nano /etc/nginx/sites-available/lb-ih
  upstream worker {
+	ip_hash;
  	server 10.20.3.3; #IP lawine
  	server 10.20.3.2; #IP linie
  	server 10.20.3.1; #IP lugner
@@ -676,30 +678,7 @@ nano /etc/nginx/sites-available/lb-ih
  server {
  	listen 80;
 
-	server_name granz.channel.b23.com www.granz.channel.b23.com;
-
- 	root /var/www/html;
-
-    	index index.html index.htm index.nginx-debian.html;
-
-    	location / {
-        proxy_pass http://worker;
-    }
- }
- ```
-**lb-leastconnection**
-```bash
-nano /etc/nginx/sites-available/lb-lc
- upstream worker {
- 	server 10.20.3.3; #IP lawine
- 	server 10.20.3.2; #IP linie
- 	server 10.20.3.1; #IP lugner
-
- }
- server {
- 	listen 80;
-
-	server_name granz.channel.b23.com www.granz.channel.b23.com;
+	server_name granz.channel.b23.com;
 
  	root /var/www/html;
 
@@ -714,6 +693,7 @@ nano /etc/nginx/sites-available/lb-lc
 ```bash
 nano /etc/nginx/sites-available/lb-gh
  upstream worker {
+	hash $request_uri consistent;
  	server 10.20.3.3; #IP lawine
  	server 10.20.3.2; #IP linie
  	server 10.20.3.1; #IP lugner
@@ -722,7 +702,7 @@ nano /etc/nginx/sites-available/lb-gh
  server {
  	listen 80;
 
-	server_name granz.channel.b23.com www.granz.channel.b23.com;
+	server_name granz.channel.b23.com;
 
  	root /var/www/html;
 

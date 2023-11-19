@@ -12,7 +12,7 @@ Berikut adalah Repository dari Kelompok B23 untuk pengerjaan Praktikum Modul 3. 
 Berikut adalah dokumentasi yang tiap soal dan penjelasan terkait perintah yang digunakan :
 ![Topologi](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/96f77bc2-ca19-445a-a4b2-1619bb58fad1)
 Aura
-```
+```bash
 auto eth0
 iface eth0 inet dhcp
 
@@ -32,109 +32,110 @@ auto eth4
 iface eth4 inet static
 	address 10.20.4.0
 	netmask 255.255.255.0
-```bash<br>
-Himmei
 ```
+Himmei
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.1.1
 	netmask 255.255.255.0
 	gateway 10.20.1.0
-Heiter
 ```
+Heiter
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.1.2
 	netmask 255.255.255.0
 	gateway 10.20.1.0
-```bash
-Denken
 ```
+Denken
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.2.1
 	netmask 255.255.255.0
 	gateway 10.20.2.0
-```bash
-Eisen
 ```
+Eisen
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.2.2
 	netmask 255.255.255.0
 	gateway 10.20.2.0
-```bash
-Lugner
 ```
+Lugner
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.3.1
 	netmask 255.255.255.0
 	gateway10.20.3.0
-```bash
-Linie
 ```
+Linie
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.3.2
 	netmask 255.255.255.0
 	gateway 10.20.3.0
-```bash
-Lawine
 ```
+Lawine
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.3.3
 	netmask 255.255.255.0
 	gateway 10.20.3.0
-```bash
+```
 Richter
-```
+```bash
 auto eth0
 iface eth0 inet dhcp
-```bash
+```
 Revolte
-```
+```bash
 auto eth0
 iface eth0 inet dhcp
-```bash
-Sein (dibuat static untuk ping domain)
 ```
+Sein (dibuat static untuk ping domain)
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.4.4
 	netmask 255.255.255.0
 	gateway 10.20.4.0
-```bash
-Stark
 ```
+Stark
+```bash
 auto eth0
 iface eth0 inet dhcp
-```bash
-Frieren
 ```
+Frieren
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.4.1
 	netmask 255.255.255.0
 	gateway 10.20.4.0
-```bash
-Flamme
 ```
+Flamme
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.4.2
 	netmask 255.255.255.0
 	gateway 10.20.4.0
-```bash
-Fern
 ```
+Fern
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.20.4.3
 	netmask 255.255.255.0
 	gateway 10.20.4.0
-```bash
+```
 
 ## **Soal Nomor 1**
 Kali ini, kalian diminta untuk melakukan register domain berupa riegel.canyon.yyy.com untuk worker Laravel dan granz.channel.yyy.com untuk worker PHP mengarah pada worker yang memiliki IP [prefix IP].x.1.

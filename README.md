@@ -210,7 +210,7 @@ service bind9 restart
 ## **Soal Nomor 2**
 Lakukan konfigurasi sesuai dengan peta yang sudah diberikan.<br>
 <br>**Langkah Penyelesaian Soal 2 :** <br>
-<u>DHCP Relay</u>
+<ins>DHCP Relay</ins>
 <br>
 Kita lakukan konfigurasi DHCP Relay di router Aura dengan isi dari INTERFACES menyesuaikan jumlah interface output yang terhubung dengan client.
 ```bash
@@ -231,7 +231,7 @@ net.ipv4.ip_forward=1
 
 service isc-dhcp-relay restart
 ```
-<u>DHCP Server</u>
+<ins>DHCP Server</ins>
 <br>
 Lakukan konfigurasi pada DHCP Server yaitu Himmei, seperti berikut :
 ```bash
@@ -279,7 +279,7 @@ subnet 10.20.3.0 netmask 255.255.255.0 {
 ```
 service isc-dhcp-server restart
 
-<u>DNS Server</u>
+<ins>DNS Server</ins>
 <br>
 ```bash
 apt-get update

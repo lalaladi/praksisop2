@@ -200,8 +200,8 @@ $TTL    604800
 @       IN      A       10.20.3.1         ;IP Lugner
 www     IN      CNAME   granz.channel.b23.com.
 @       IN      AAAA       ::1 
-service bind9 restart
 ```
+service bind9 restart
 **Bukti : di Sein**
 ![ping riegel](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/c0b6a48b-e988-4068-86a5-e0245efd5713)
 <br>

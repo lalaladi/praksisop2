@@ -20,7 +20,6 @@ auto eth1
 iface eth1 inet static
 	address 10.20.1.0
 	netmask 255.255.255.0
-
 auto eth2
 iface eth2 inet static
 	address 10.20.2.0
@@ -33,6 +32,7 @@ auto eth4
 iface eth4 inet static
 	address 10.20.4.0
 	netmask 255.255.255.0
+
 ```bash
 Himmei
 ```

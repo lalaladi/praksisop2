@@ -754,7 +754,7 @@ ab -n 200 -c 10 -g http://granz.channel.B03.com
 - Generic Hash<br>
 ![Generic_Hash](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/62893811-63b3-4775-9b70-e20608ce1176)
 <br>
-file output yang dihasilkan oleh Apache Benchmark (ab) saat melakukan pengujian :  <a href="[url](https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0)https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0">File_Data</a>
+file output yang dihasilkan oleh Apache Benchmark (ab) saat melakukan pengujian :  <a href="https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0)https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0">File_Data</a>
 
 ## **Soal Nomor 9**
 Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire.

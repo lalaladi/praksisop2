@@ -765,3 +765,59 @@ auth_basic_user_file /etc/nginx/rahasisakita/htpasswd;
 service nginx restart<br>
 **Bukti : pada Revolte**
 lynx granz.channel.B03.com
+
+## **Soal Nomor 12**
+Lalu buat untuk setiap request yang mengandung /its akan di proxy passing menuju halaman https://www.its.ac.id. 
+<br>
+<br>**Langkah Penyelesaian Soal 12 :** <br>
+
+## **Soal Nomor 13**
+Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168.
+<br>
+<br>**Langkah Penyelesaian Soal 13 :** <br>
+
+## **Soal Nomor 14**
+Semua data yang diperlukan, diatur pada Denken dan harus dapat diakses oleh Frieren, Flamme, dan Fern.
+<br>
+<br>**Langkah Penyelesaian Soal 14 :** <br>
+
+## **Soal Nomor 15**
+Frieren, Flamme, dan Fern memiliki Riegel Channel sesuai dengan quest guide berikut. Jangan lupa melakukan instalasi PHP8.0 dan Composer
+<br>
+<br>**Langkah Penyelesaian Soal 15 :** <br>
+
+Riegel Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
+## **Soal Nomor 16**
+POST /auth/register
+<br>
+<br>**Langkah Penyelesaian Soal 16 :** <br>
+
+## **Soal Nomor 17**
+POST /auth/register
+<br>
+<br>**Langkah Penyelesaian Soal 17 :** <br>
+
+## **Soal Nomor 18**
+GET /me
+<br>
+<br>**Langkah Penyelesaian Soal 18 :** <br>
+
+## **Soal Nomor 19**
+Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur Riegel Channel maka implementasikan Proxy Bind pada Eisen untuk mengaitkan IP dari Frieren, Flamme, dan Fern.
+<br>
+<br>**Langkah Penyelesaian Soal 19 :** <br>
+
+## **Soal Nomor 20**
+Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frieren, Flamme, dan Fern. Untuk testing kinerja naikkan 
+- pm.max_children
+- pm.start_servers
+- pm.min_spare_servers
+- pm.max_spare_servers
+sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada Grimoire.
+<br>
+<br>**Langkah Penyelesaian Soal 20 :** <br>
+
+## **Soal Nomor 21**
+Nampaknya hanya menggunakan PHP-FPM tidak cukup untuk meningkatkan performa dari worker maka implementasikan Least-Conn pada Eisen. Untuk testing kinerja dari worker tersebut dilakukan sebanyak 100 request dengan 10 request/second.
+<br>
+<br>**Langkah Penyelesaian Soal 21 :** <br>

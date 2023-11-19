@@ -630,7 +630,7 @@ nano /etc/nginx/sites-available/lb-rr
  server {
  	listen 80;
 
-	server_name granz.channel.b23.com;
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
 
  	root /var/www/html;
 
@@ -654,7 +654,7 @@ nano /etc/nginx/sites-available/lb-lc
  server {
  	listen 80;
 
-	server_name granz.channel.b23.com;
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
 
  	root /var/www/html;
 
@@ -678,7 +678,7 @@ nano /etc/nginx/sites-available/lb-ih
  server {
  	listen 80;
 
-	server_name granz.channel.b23.com;
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
 
  	root /var/www/html;
 
@@ -702,7 +702,7 @@ nano /etc/nginx/sites-available/lb-gh
  server {
  	listen 80;
 
-	server_name granz.channel.b23.com;
+	server_name granz.channel.b23.com www.granz.channel.b23.com;
 
  	root /var/www/html;
 

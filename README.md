@@ -32,7 +32,7 @@ auto eth4
 iface eth4 inet static
 	address 10.20.4.0
 	netmask 255.255.255.0
-```bash
+```bash<br>
 Himmei
 ```
 auto eth0

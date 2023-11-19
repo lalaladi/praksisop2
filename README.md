@@ -786,18 +786,19 @@ Frieren, Flamme, dan Fern memiliki Riegel Channel sesuai dengan quest guide beri
 <br>
 <br>**Langkah Penyelesaian Soal 15 :** <br>
 
+**Soal**
 Riegel Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
-## **Soal Nomor 16**
+## **Nomor 16**
 POST /auth/register
 <br>
 <br>**Langkah Penyelesaian Soal 16 :** <br>
 
-## **Soal Nomor 17**
+## **Nomor 17**
 POST /auth/register
 <br>
 <br>**Langkah Penyelesaian Soal 17 :** <br>
 
-## **Soal Nomor 18**
+## **Nomor 18**
 GET /me
 <br>
 <br>**Langkah Penyelesaian Soal 18 :** <br>

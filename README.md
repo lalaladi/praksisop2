@@ -770,7 +770,7 @@ lynx granz.channel.B03.com
 Lalu buat untuk setiap request yang mengandung /its akan di proxy passing menuju halaman https://www.its.ac.id. 
 <br>
 <br>**Langkah Penyelesaian Soal 12 :** <br>
-Pada Eisen : 
+Pada Eisen : <br>
 nano /etc/nginx/sites-available/lb-granz
 ```bash
  upstream worker {
@@ -806,7 +806,7 @@ server {
 ln -s /etc/nginx/sites-available/lb-granz /etc/nginx/sites-enabled
 service nginx restart
 ```
-Bukti : 
+Bukti : <br>
 lynx 10.20.2.2/its
 
 
@@ -814,7 +814,7 @@ lynx 10.20.2.2/its
 Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168.
 <br>
 <br>**Langkah Penyelesaian Soal 13 :** <br>
-Di Himmei kita fixed-in client terlebih dahulu yang memiliki IP sesuai seperti di soal  pada client. Kita pilih Client Richter : 
+Di Himmei kita fixed-in client terlebih dahulu yang memiliki IP sesuai seperti di soal  pada client. Kita pilih Client Richter : <br>
 nano /etc/dhcp/dhcpd.conf
 ```bash
 host Richter {
@@ -823,7 +823,7 @@ host Richter {
 }
 service isc-dhcp-server restart
 ```
-Selanjutnya, kita beralih ke Eisen (LB), edit konfigurasi sebagai berikut : 
+Selanjutnya, kita beralih ke Eisen (LB), edit konfigurasi sebagai berikut : <br>
 nano /etc/nginx/sites-available/lb-granz
 ```bash
  upstream worker {
@@ -864,7 +864,7 @@ server {
 
  }
 ```
-service nginx restart
+service nginx restart<br>
 Bukti : lynx 10.20.2.2/its
 
 
@@ -891,7 +891,8 @@ skip-networking=0
 skip-bind-address
 ```
 pada file /etc/mysql/mariadb.conf.d/50-server.cnf ubah [bind-address] menjadi 0.0.0.0 dan restart mysql.
-Setelah itu lakukan konfigurasi mysql sebagai berikut: mysql -u root -p
+Setelah itu lakukan konfigurasi mysql sebagai berikut: <br>
+mysql -u root -p
 ```bash
 DROP USER IF EXISTS 'kelompokB23'@'%';
 DROP USER IF EXISTS 'kelompokB23'@'localhost';
@@ -1003,7 +1004,7 @@ cd /var/www/laravel-praktikum-jarkom && php artisan jwt:secret
 cd /var/www/laravel-praktikum-jarkom && php artisan config:clear
 chown -R www-data.www-data /var/www/laravel-praktikum-jarkom/storage
 ```
-Setelah berhasil, lanjutkan dengan konfigurasi nginx berikut : 
+Setelah berhasil, lanjutkan dengan konfigurasi nginx berikut : <br>
 nano /etc/nginx/sites-available/riegel
 ```bash
     server {
@@ -1032,9 +1033,11 @@ nano /etc/nginx/sites-available/riegel
     access_log /var/log/nginx/riegel_access.log;
 }
 ```
-Atur port untuk masing-masing worker sebagai berikut:
+Atur port untuk masing-masing worker sebagai berikut:<br>
 10.20.4.1 = 8001	;Frieren 
+<br>
 10.20.4.2 = 8002	;Flamme
+<br>
 10.20.4.3 = 8003	;Fern
 
 ```bash
@@ -1044,9 +1047,11 @@ service php8.0-fpm start
 service php8.0-fpm restart
 service nginx restart
 ```
-Bukti : pada masing-masing worker
+Bukti : pada masing-masing worker<br>
 lynx http://10.20.4.1:8001
+<br>
 lynx http://10.20.4.2:8002
+<br>
 lynx http://10.20.4.3:8003
 
 **Soal**
@@ -1056,7 +1061,8 @@ Riegel Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 requ
 POST /auth/register
 <br>
 <br>**Langkah Penyelesaian Soal 16 :** <br>
-Pada Sein : nano  register.json
+Pada Sein : <br>
+nano  register.json
 ```bash
 {
   "username": "kelompokB23",
@@ -1073,7 +1079,8 @@ ab -n 100 -c 10 -p register.json -T application/json http://10.20.4.3:8003/api/a
 POST /auth/register
 <br>
 <br>**Langkah Penyelesaian Soal 17 :** <br>
-Masih di Sein : nano login.json
+Masih di Sein : <br>
+nano login.json
 ```bash
 {
   "username": "kelompokB23",
@@ -1104,7 +1111,7 @@ ab -n 100 -c 10 -H "Authorization: Bearer $token" http://10.20.4.3:8003/api/me
 Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur Riegel Channel maka implementasikan Proxy Bind pada Eisen untuk mengaitkan IP dari Frieren, Flamme, dan Fern.
 <br>
 <br>**Langkah Penyelesaian Soal 19 :** <br>
-Pada Eisen, lakukan konfigurasi nginx berikut : 
+Pada Eisen, lakukan konfigurasi nginx berikut : <br>
 nano /etc/nginx/sites-available/from_laravel
 ```bash 
 echo 'upstream worker {
@@ -1142,9 +1149,10 @@ Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frier
 sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada Grimoire.
 <br>
 <br>**Langkah Penyelesaian Soal 20 :** <br>
-Untuk melakukan testing, pada masing-masing worker siapkan script berikut : 
-Script Pertama 
-	nano /etc/php/8.0/fpm/pool.d/www.conf
+Untuk melakukan testing, pada masing-masing worker siapkan script berikut :
+<br> 
+Script Pertama<br> 
+nano /etc/php/8.0/fpm/pool.d/www.conf
 ```bash
 [www]
 user = www-data
@@ -1166,8 +1174,8 @@ pm.max_spare_servers = 3
 service php8.0-fpm restart
 **Bukti : **
 
-Script Kedua
-	nano /etc/php/8.0/fpm/pool.d/www.conf
+Script Kedua<br>
+nano /etc/php/8.0/fpm/pool.d/www.conf
 ```bash
 [www]
 user = www-data
@@ -1186,11 +1194,11 @@ pm.start_servers = 5
 pm.min_spare_servers = 3
 pm.max_spare_servers = 10
 ```
-service php8.0-fpm restart
+service php8.0-fpm restart<br>
 **Bukti : **
 
-Script Ketiga
-	nano /etc/php/8.0/fpm/pool.d/www.conf
+Script Ketiga<br>
+nano /etc/php/8.0/fpm/pool.d/www.conf
 ```bash
 [www]
 user = www-data
@@ -1234,8 +1242,9 @@ server {
     }
 }
 ```
-service nginx restart
+service nginx restart<br>
 **Bukti : **
+<br>
 Di Sein, kita gunakan script terakhir
 ```bash
 ab -n 100 -c 10 -p login.json -T application/json http://www.riegel.canyon.B23.com/api/auth/login

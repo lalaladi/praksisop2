@@ -770,21 +770,284 @@ lynx granz.channel.B03.com
 Lalu buat untuk setiap request yang mengandung /its akan di proxy passing menuju halaman https://www.its.ac.id. 
 <br>
 <br>**Langkah Penyelesaian Soal 12 :** <br>
+Pada Eisen : 
+nano /etc/nginx/sites-available/lb-granz
+```bash
+ upstream worker {
+ 	server 10.20.3.3; #IP lawine
+ 	server 10.20.3.2; #IP linie
+ 	server 10.20.3.1; #IP lugner
+}
+server {
+    listen 80;
+    server_name granz.channel.B23.com www.granz.channel.B23.com;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+        proxy_pass http://worker;
+    }
+
+ 	location ~ /its {
+        proxy_pass https://www.its.ac.id;
+        proxy_set_header Host www.its.ac.id;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    auth_basic "Restricted Content";
+    auth_basic_user_file /etc/nginx/rahasisakita/htpasswd;
+
+ }
+```
+```bash
+ln -s /etc/nginx/sites-available/lb-granz /etc/nginx/sites-enabled
+service nginx restart
+```
+Bukti : 
+lynx 10.20.2.2/its
+
 
 ## **Soal Nomor 13**
 Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168.
 <br>
 <br>**Langkah Penyelesaian Soal 13 :** <br>
+Di Himmei kita fixed-in client terlebih dahulu yang memiliki IP sesuai seperti di soal  pada client. Kita pilih Client Richter : 
+nano /etc/dhcp/dhcpd.conf
+```bash
+host Richter {
+    hardware ethernet 96:05:97:2a:29:65;
+    fixed-address 10.20.3.70;
+}
+service isc-dhcp-server restart
+```
+Selanjutnya, kita beralih ke Eisen (LB), edit konfigurasi sebagai berikut : 
+nano /etc/nginx/sites-available/lb-granz
+```bash
+ upstream worker {
+ 	server 10.20.3.3; #IP lawine
+ 	server 10.20.3.2; #IP linie
+ 	server 10.20.3.1; #IP lugner
+}
+server {
+    listen 80;
+    server_name granz.channel.B23.com www.granz.channel.B23.com;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+  location / {
+        allow 10.20.3.69;
+        allow 10.20.3.70;
+        allow 10.20.4.167;
+        allow 10.20.4.168;
+        deny all;
+        proxy_pass http://worker;
+    }
+
+    location / {
+        proxy_pass http://worker;
+    }
+
+ 	location ~ /its {
+        proxy_pass https://www.its.ac.id;
+        proxy_set_header Host www.its.ac.id;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    auth_basic "Restricted Content";
+    auth_basic_user_file /etc/nginx/rahasisakita/htpasswd;
+
+ }
+```
+service nginx restart
+Bukti : lynx 10.20.2.2/its
+
 
 ## **Soal Nomor 14**
 Semua data yang diperlukan, diatur pada Denken dan harus dapat diakses oleh Frieren, Flamme, dan Fern.
 <br>
 <br>**Langkah Penyelesaian Soal 14 :** <br>
+Pada Denken : 
+```bash
+apt-get update
+apt-get install mariadb-server -y
+service mysql start
+```
+Karena database akan diakses oleh tiga worker, tambahkan konfigurasi berikut pada /etc/mysql/my.cnf
+```bash
+[client-server]
+
+# Import all .cnf files from configuration directory
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mariadb.conf.d/
+
+[mysqld]
+skip-networking=0
+skip-bind-address
+```
+pada file /etc/mysql/mariadb.conf.d/50-server.cnf ubah [bind-address] menjadi 0.0.0.0 dan restart mysql.
+Setelah itu lakukan konfigurasi mysql sebagai berikut: mysql -u root -p
+```bash
+DROP USER IF EXISTS 'kelompokB23'@'%';
+DROP USER IF EXISTS 'kelompokB23'@'localhost';
+CREATE USER 'kelompokb23'@'%' IDENTIFIED BY 'passwordb23';
+CREATE USER 'kelompokb23'@'localhost' IDENTIFIED BY 'passwordb23';
+CREATE DATABASE dbkelompokb23;
+GRANT ALL PRIVILEGES ON *.* TO 'kelompokb23'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'kelompokb23'@'localhost';
+FLUSH PRIVILEGES;
+```
+Untuk pembuktian, kita lakukan pada worker laravel sebagai berikut : 
+```
+apt-get update
+apt-get install -y lsb-release ca-certificates apt-transport-https software-properties-common gnupg2
+curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
+sh -c 'echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+apt-get update
+apt-get install php7.3-mbstring php7.3-xml php7.3-cli php7.3-common php7.3-intl php7.3-opcache php7.3-readline php7.3-mysql php7.3-fpm php7.3-curl unzip wget -y
+wget https://getcomposer.org/download/2.0.13/composer.phar
+chmod +x composer.phar
+mv composer.phar /usr/bin/composer
+apt-get install git -y
+git clone https://github.com/elshiraphine/laravel-simple-rest-api.git
+composer install
+```
+Kemudian, jalankan perintah berikut agar database dapat terlihat : 
+```bash
+mariadb --host=10.20.2.1 --port=3306 --user=kelompokB23 --password=passwordB23 dbkelompokB23 -e "SHOW DATABASES;"
+```
 
 ## **Soal Nomor 15**
 Frieren, Flamme, dan Fern memiliki Riegel Channel sesuai dengan quest guide berikut. Jangan lupa melakukan instalasi PHP8.0 dan Composer
 <br>
 <br>**Langkah Penyelesaian Soal 15 :** <br>
+Pada tiap worker Laravel : 
+```
+apt-get update
+apt-get install php8.0-mbstring php8.0-xml php8.0-cli php8.0-common php8.0-intl php8.0-opcache php8.0-readline php8.0-mysql php8.0-fpm php8.0-curl unzip wget -y
+apt-get install git -y
+apt-get install git -y 
+cd /var/www && git clone https://github.com/martuafernando/laravel-praktikum-jarkom 
+cd /var/www/laravel-praktikum-jarkom && composer update
+cp .env.example .env
+
+echo 'APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=10.20.2.1
+DB_PORT=3306
+DB_DATABASE=dbkelompokb23
+DB_USERNAME=kelompokb23
+DB_PASSWORD=passwordb23
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp
+MAIL_HOST=mailpit
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_HOST=
+PUSHER_PORT=443
+PUSHER_SCHEME=https
+PUSHER_APP_CLUSTER=mt1
+
+VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+VITE_PUSHER_HOST="${PUSHER_HOST}"
+VITE_PUSHER_PORT="${PUSHER_PORT}"
+VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
+VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"' > /var/www/laravel-praktikum-jarkom/.env
+cd /var/www/laravel-praktikum-jarkom && php artisan key:generate
+cd /var/www/laravel-praktikum-jarkom && php artisan config:cache
+cd /var/www/laravel-praktikum-jarkom && php artisan migrate
+cd /var/www/laravel-praktikum-jarkom && php artisan db:seed
+cd /var/www/laravel-praktikum-jarkom && php artisan storage:link
+cd /var/www/laravel-praktikum-jarkom && php artisan jwt:secret
+cd /var/www/laravel-praktikum-jarkom && php artisan config:clear
+chown -R www-data.www-data /var/www/laravel-praktikum-jarkom/storage
+```
+Setelah berhasil, lanjutkan dengan konfigurasi nginx berikut : 
+nano /etc/nginx/sites-available/riegel
+```bash
+    server {
+    listen [SPECIFIC-PORT];
+
+    root /var/www/laravel-praktikum-jarkom/public;
+
+    index index.php index.html index.htm;
+    server_name _;
+
+    location / {
+            try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # pass PHP scripts to FastCGI server
+    location ~ \.php$ {
+      include snippets/fastcgi-php.conf;
+      fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+    }
+
+    location ~ /\.ht {
+            deny all;
+    }
+
+    error_log /var/log/nginx/riegel_error.log;
+    access_log /var/log/nginx/riegel_access.log;
+}
+```
+Atur port untuk masing-masing worker sebagai berikut:
+10.20.4.1 = 8001	;Frieren 
+10.20.4.2 = 8002	;Flamme
+10.20.4.3 = 8003	;Fern
+
+```bash
+ln -s /etc/nginx/sites-available/riegel /etc/nginx/sites-enabled/riegel
+rm /etc/nginx/sites-enabled/default
+service php8.0-fpm start
+service php8.0-fpm restart
+service nginx restart
+```
+Bukti : pada masing-masing worker
+lynx http://10.20.4.1:8001
+lynx http://10.20.4.2:8002
+lynx http://10.20.4.3:8003
 
 **Soal**
 <br>
@@ -793,21 +1056,82 @@ Riegel Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 requ
 POST /auth/register
 <br>
 <br>**Langkah Penyelesaian Soal 16 :** <br>
+Pada Sein : nano  register.json
+```bash
+{
+  "username": "kelompokB23",
+  "password": "passwordB23",
+}
+```
+Kita menggunakan file .json sebagai testing endpoint POST /auth/register yang dapat membantu dalam otomatisasi proses.
+Bukti : Pada client Sein, jalankan perintah apache benchmark berikut 
+```bash
+ab -n 100 -c 10 -p register.json -T application/json http://10.20.4.3:8003/api/auth/register
+```
 
 ## **Nomor 17**
 POST /auth/register
 <br>
 <br>**Langkah Penyelesaian Soal 17 :** <br>
+Masih di Sein : nano login.json
+```bash
+{
+  "username": "kelompokB23",
+  "password": "passwordB23"
+} 
+```
+jalankan saja perintah : 
+```bash
+ab -n 100 -c 10 -p login.json -T application/json http://10.20.4.3:8003/api/auth/login
+```
 
 ## **Nomor 18**
 GET /me
 <br>
 <br>**Langkah Penyelesaian Soal 18 :** <br>
+Di Sein : 
+```bash
+curl -X POST -H "Content-Type: application/json" -d @login.json http://10.20.4.3:8003/api/auth/login > get_token.txt
+
+token=$(cat get_token.txt | jq -r '.token')
+```
+Bukti di Sein : 
+```bash
+ab -n 100 -c 10 -H "Authorization: Bearer $token" http://10.20.4.3:8003/api/me
+```
 
 ## **Soal Nomor 19**
 Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur Riegel Channel maka implementasikan Proxy Bind pada Eisen untuk mengaitkan IP dari Frieren, Flamme, dan Fern.
 <br>
 <br>**Langkah Penyelesaian Soal 19 :** <br>
+Pada Eisen, lakukan konfigurasi nginx berikut : 
+nano /etc/nginx/sites-available/from_laravel
+```bash 
+echo 'upstream worker {
+    server 10.20.4.1:8001;
+    server 10.20.4.2:8002;
+    server 10.20.4.3:8003;
+}
+
+server {
+    listen 80;
+    server_name riegel.canyon.B23.com www.riegel.canyon.B23.com;
+
+    location / {
+        proxy_pass http://worker;
+    }
+} ' > /etc/nginx/sites-available/from_laravel
+```
+```bash
+
+ln -s /etc/nginx/sites-available/from_laravel /etc/nginx/sites-enabled
+
+service nginx restart
+```
+Bukti : Di Sein
+```bash
+ab -n 100 -c 10 -p login.json -T application/json http://www.riegel.canyon.B23.com/api/auth/login
+```
 
 ## **Soal Nomor 20**
 Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frieren, Flamme, dan Fern. Untuk testing kinerja naikkan 
@@ -818,8 +1142,101 @@ Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frier
 sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada Grimoire.
 <br>
 <br>**Langkah Penyelesaian Soal 20 :** <br>
+Untuk melakukan testing, pada masing-masing worker siapkan script berikut : 
+Script Pertama 
+	nano /etc/php/8.0/fpm/pool.d/www.conf
+```bash
+[www]
+user = www-data
+group = www-data
+listen = /run/php/php8.0-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+php_admin_value[disable_functions] = exec,passthru,shell_exec,system
+php_admin_flag[allow_url_fopen] = off
+
+; Choose how the process manager will control the number of child processes.
+
+pm = dynamic
+pm.max_children = 10
+pm.start_servers = 2
+pm.min_spare_servers = 1
+pm.max_spare_servers = 3
+```
+service php8.0-fpm restart
+**Bukti : **
+
+Script Kedua
+	nano /etc/php/8.0/fpm/pool.d/www.conf
+```bash
+[www]
+user = www-data
+group = www-data
+listen = /run/php/php8.0-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+php_admin_value[disable_functions] = exec,passthru,shell_exec,system
+php_admin_flag[allow_url_fopen] = off
+
+; Choose how the process manager will control the number of child processes.
+
+pm = dynamic
+pm.max_children = 25
+pm.start_servers = 5
+pm.min_spare_servers = 3
+pm.max_spare_servers = 10
+```
+service php8.0-fpm restart
+**Bukti : **
+
+Script Ketiga
+	nano /etc/php/8.0/fpm/pool.d/www.conf
+```bash
+[www]
+user = www-data
+group = www-data
+listen = /run/php/php8.0-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+php_admin_value[disable_functions] = exec,passthru,shell_exec,system
+php_admin_flag[allow_url_fopen] = off
+
+; Choose how the process manager will control the number of child processes.
+
+pm = dynamic
+pm.max_children = 75
+pm.start_servers = 10
+pm.min_spare_servers = 5
+pm.max_spare_servers = 20
+```
+service php8.0-fpm restart
 
 ## **Soal Nomor 21**
 Nampaknya hanya menggunakan PHP-FPM tidak cukup untuk meningkatkan performa dari worker maka implementasikan Least-Conn pada Eisen. Untuk testing kinerja dari worker tersebut dilakukan sebanyak 100 request dengan 10 request/second.
 <br>
 <br>**Langkah Penyelesaian Soal 21 :** <br>
+Pada Eisen : 
+nano /etc/nginx/sites-available/from_laravel
+```bash 
+upstream worker {
+least_conn;
+    server 10.20.4.1:8001;
+    server 10.20.4.2:8002;
+    server 10.20.4.3:8003;
+}
+
+server {
+    listen 80;
+    server_name riegel.canyon.B23.com www.riegel.canyon.B23.com;
+
+    location / {
+        proxy_pass http://worker;
+    }
+}
+```
+service nginx restart
+**Bukti : **
+Di Sein, kita gunakan script terakhir
+```bash
+ab -n 100 -c 10 -p login.json -T application/json http://www.riegel.canyon.B23.com/api/auth/login
+```

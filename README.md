@@ -579,8 +579,7 @@ ln -s /etc/nginx/sites-available/lb-rr /etc/nginx/sites-enabled
 rm -rf /etc/nginx/sites-enabled/default
 service nginx restart
 ```
-<br>
-Pada DNS Server :
+<br>Pada DNS Server :<br>
 ```bash
 nano /etc/bind/jarkom/granz.channel.b23.com
 Edit : 
@@ -616,6 +615,7 @@ c. Grafik request per second untuk masing masing algoritma.
 d. Analisis
 <br>
 <br>**Langkah Penyelesaian Soal 9 :** <br>
+<br>
 Pada Eisen :<br>
 **lb-roundrobin**
 ```bash
@@ -745,14 +745,15 @@ Lalu, pada ketiga worker lakukan perintah :
 ```bash
 ab -n 200 -c 10 -g http://granz.channel.B03.com
 ```
-- Round Robin
+- Round Robin<br>
 ![no 7](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/dbb9f82d-49d1-487f-98d5-5eca940ac0be) 
-- Least Connection
+- Least Connection<br>
 ![least_Connection](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/2e429d44-278d-4a65-96cb-a3051efec785)
-- Ip Hash
+- Ip Hash<br>
 ![Ip_Hash](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/208062f8-0385-44cd-8247-4fc481e38aab)
-- Generic Hash
+- Generic Hash<br>
 ![Generic_Hash](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/62893811-63b3-4775-9b70-e20608ce1176)
+<br>
 file output yang dihasilkan oleh Apache Benchmark (ab) saat melakukan pengujian :  <a href="[url](https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0)https://docs.google.com/spreadsheets/d/19G_bxOU47g8Yfww7l2C0UedpdCG4sVTmMIL_JeLyRFE/edit#gid=0">File_Data</a>
 
 ## **Soal Nomor 9**

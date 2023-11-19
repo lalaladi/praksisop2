@@ -740,6 +740,13 @@ file output yang dihasilkan oleh Apache Benchmark (ab) saat melakukan pengujian 
 Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire.
 <br>
 <br>**Langkah Penyelesaian Soal 10 :** <br>
+Langsung saja kita jalankan perintah berikut pada Client Revolte : 
+```bash
+ab -n 1000 -c 100 http://granz.channel.B23.com
+```
+- 3 Worker
+- 2 Worker
+- 1 Worker
 
 ## **Soal Nomor 11**
 Selanjutnya coba tambahkan konfigurasi autentikasi di LB dengan dengan kombinasi username: “netics” dan password: “ajkyyy”, dengan yyy merupakan kode kelompok. Terakhir simpan file “htpasswd” nya di /etc/nginx/rahasisakita/

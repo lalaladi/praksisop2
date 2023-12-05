@@ -15,11 +15,12 @@ Berikut adalah dokumentasi yang tiap soal dan penjelasan terkait perintah yang d
 Teknik ini pengefisiensian pembagian IP(subnetting) dengan menyesuaikan besar netmask sesuai banyaknya host/komputer yang membutuhkannya. 
 ![topologi](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/6e39596b-bd32-4307-b7d6-b6b5de036e9e)
 <br>
+<br>
 Langkah pertama tandai subnet pada gambar topologi anda 
 ![tandai](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/c9cab4d2-326a-41f6-9471-8e36dff41596)
 <br>                            
 2. Langkah kedua yang dilakukan dapat dengan menentukan jumlah alamat IP yang dibutuhkan seperti tabel dibawah : 
-|  Subnet |  NRP  |  Kelas  |
+|  Subnet |  Jumlah IP  |  Netmask  |
 | ------  | ----- | ------- |
 |   A1    |  512  |   /22   |
 |   A2    |  31   |   /22   |
@@ -43,8 +44,8 @@ Langkah pertama tandai subnet pada gambar topologi anda
 |   A20   |   3   |   /22   |
 |   A21   |   2   |   /22   |
 |  **TOTAL**  |  **4255** |   **/19**   |
-
-
+Kita dapat lihat di bagian A1, switch8 akan terhubung ke 510 host-server Sein-Heiter sehingga total IP agar terhubung antar kakinya ada 512.
+<br>
 3. Sehingga akan dihasilkan sebuah tree yang dimana IP-nya akan diatur tiap interface sesuai dengan aturan subnetting yang darinya didapatkan Network ID, Broadcast Address, dan Available Hosts.
 <img width="4539" alt="tree" src="https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/ca23f508-a991-40bb-a98b-880b42c22781">
 <br>
@@ -53,6 +54,7 @@ Sebelum melakukan konfigurasi dan routing :   <br>
 * BUKA : _/etc/sysctl.conf_ -> UNCOMMENT : _net.ipv4.ip_forward=1_ (PADA SEMUA ROUTER) DAN SIMPAN DI _/root/sysctl.conf_  <br>
 * PADA _root/.bashrc_ di AURA TAMBAHKAN : _iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.20.0.0/16_  <br>
 dan PADA _root/.bashrc_ di tiap node TAMBAHKAN : _echo nameserver 192.168.122.1 > /etc/resolv.conf_
+<br>
 <br>
 
 **Aura (ROUTER)**

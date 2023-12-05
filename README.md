@@ -44,6 +44,7 @@ Langkah pertama tandai subnet pada gambar topologi anda
 |   A20   |   3   |   /22   |
 |   A21   |   2   |   /22   |
 |  **TOTAL**  |  **4255** |   **/19**   |
+<br>
 Kita dapat lihat di bagian A1, switch8 akan terhubung ke 510 host-server Sein-Heiter sehingga total IP agar terhubung antar kakinya ada 512.
 <br>
 3. Sehingga akan dihasilkan sebuah tree yang dimana IP-nya akan diatur tiap interface sesuai dengan aturan subnetting yang darinya didapatkan Network ID, Broadcast Address, dan Available Hosts.

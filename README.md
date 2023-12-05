@@ -52,8 +52,9 @@ Sebelum melakukan konfigurasi dan routing :   <br>
 * SIMPAN ROUTING DALAM : _/root/rute.sh_  <br>
 * BUKA : _/etc/sysctl.conf_ -> UNCOMMENT : _net.ipv4.ip_forward=1_ (PADA SEMUA ROUTER) DAN SIMPAN DI _/root/sysctl.conf_  <br>
 * PADA _root/.bashrc_ di AURA TAMBAHKAN : _iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.20.0.0/16_  <br>
-  dan PADA _root/.bashrc_ di tiap node TAMBAHKAN : _echo nameserver 192.168.122.1 > /etc/resolv.conf_
+dan PADA _root/.bashrc_ di tiap node TAMBAHKAN : _echo nameserver 192.168.122.1 > /etc/resolv.conf_
 <br>
+
 **Aura (ROUTER)**
 <br>
 Configurasi : 

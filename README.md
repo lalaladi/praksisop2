@@ -49,10 +49,11 @@ Langkah pertama tandai subnet pada gambar topologi anda
 3. Sehingga akan dihasilkan sebuah tree yang dimana IP-nya akan diatur tiap interface sesuai dengan aturan subnetting yang darinya didapatkan Network ID, Broadcast Address, dan Available Hosts. Kita dapat lihat di bagian A1, switch8 akan terhubung ke 510 host-server Sein-Heiter sehingga total IP agar terhubung antar kakinya ada 512.
 <img width="4539" alt="tree" src="https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/ca23f508-a991-40bb-a98b-880b42c22781">
 <br>
-Sebelum melakukan konfigurasi dan routing :   <br>
-* SIMPAN ROUTING DALAM : _/root/rute.sh_  <br>
-* BUKA : _/etc/sysctl.conf_ -> UNCOMMENT : _net.ipv4.ip_forward=1_ (PADA SEMUA ROUTER) DAN SIMPAN DI _/root/sysctl.conf_  <br>
-* PADA _root/.bashrc_ di AURA TAMBAHKAN : _iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.20.0.0/16_  <br>
+Sebelum melakukan konfigurasi dan routing : <br>
+
+* SIMPAN ROUTING DALAM : _/root/rute.sh_ 
+* BUKA : _/etc/sysctl.conf_ -> UNCOMMENT : _net.ipv4.ip_forward=1_ (PADA SEMUA ROUTER) DAN SIMPAN DI _/root/sysctl.conf_  
+* PADA _root/.bashrc_ di AURA TAMBAHKAN : _iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.20.0.0/16_ 
 dan PADA _root/.bashrc_ di tiap node TAMBAHKAN : _echo nameserver 192.168.122.1 > /etc/resolv.conf_
 <br>
 <br>
@@ -104,7 +105,7 @@ route add -net 10.20.16.0 netmask 255.255.252.0 gw 10.20.0.22
 route add -net 10.20.0.32 netmask 255.255.255.252 gw 10.20.0.22
 route add -net 10.20.0.40 netmask 255.255.255.248 gw 10.20.0.22
 ```
-**Denken (ROUTER) **
+**Denken (ROUTER)**
 <br>
 Config :
 ```bash

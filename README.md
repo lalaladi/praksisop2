@@ -44,10 +44,9 @@ Langkah pertama tandai subnet pada gambar topologi anda
 |   A20   |   3   |   /22   |
 |   A21   |   2   |   /22   |
 |  **TOTAL**  |  **4255** |   **/19**   |
+
 <br>
-Kita dapat lihat di bagian A1, switch8 akan terhubung ke 510 host-server Sein-Heiter sehingga total IP agar terhubung antar kakinya ada 512.
-<br>
-3. Sehingga akan dihasilkan sebuah tree yang dimana IP-nya akan diatur tiap interface sesuai dengan aturan subnetting yang darinya didapatkan Network ID, Broadcast Address, dan Available Hosts.
+3. Sehingga akan dihasilkan sebuah tree yang dimana IP-nya akan diatur tiap interface sesuai dengan aturan subnetting yang darinya didapatkan Network ID, Broadcast Address, dan Available Hosts. Kita dapat lihat di bagian A1, switch8 akan terhubung ke 510 host-server Sein-Heiter sehingga total IP agar terhubung antar kakinya ada 512.
 <img width="4539" alt="tree" src="https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/ca23f508-a991-40bb-a98b-880b42c22781">
 <br>
 Sebelum melakukan konfigurasi dan routing :   <br>

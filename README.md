@@ -292,6 +292,7 @@ iface eth0 inet static
 
 # **DHCP Server : Revolte**
 <br>
+
 ```bash
 apt-get update
 apt-get install isc-dhcp-server

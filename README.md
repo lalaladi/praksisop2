@@ -1,6 +1,6 @@
-# Jarkom-Modul-4-B23-2023
-# **Praktikum Modul 4 Jaringan Komputer**
-Berikut adalah Repository dari Kelompok B23 untuk pengerjaan Praktikum Modul 4. Dalam Repository ini terdapat daftar anggota kelompok, dokumentasi dan Penjelasan tiap soal, _Screenshot_, dan Kendala yang Dialami. 
+# Jarkom-Modul-5-B23-2023
+# **Praktikum Modul 5 Jaringan Komputer**
+Berikut adalah Repository dari Kelompok B23 untuk pengerjaan Praktikum Modul 5. Dalam Repository ini terdapat daftar anggota kelompok, dokumentasi dan Penjelasan tiap soal, _Screenshot_, dan Kendala yang Dialami. 
 
 # **Anggota Kelompok**
 | Nama                      | NRP        | Kelas               |
@@ -13,41 +13,27 @@ Berikut adalah dokumentasi yang tiap soal dan penjelasan terkait perintah yang d
 
 # **VLSM dengan GNS3**
 Teknik ini pengefisiensian pembagian IP(subnetting) dengan menyesuaikan besar netmask sesuai banyaknya host/komputer yang membutuhkannya. 
-![topologi](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/6e39596b-bd32-4307-b7d6-b6b5de036e9e)
-<br>
-<br>
 Langkah pertama tandai subnet pada gambar topologi anda 
-![tandai](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/c9cab4d2-326a-41f6-9471-8e36dff41596)
+![Screenshot 2023-12-19 171627](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/ed9f6613-5bd2-46a7-8026-08922c5edbce)
 <br>                            
-2. Langkah kedua yang dilakukan dapat dengan menentukan jumlah alamat IP yang dibutuhkan seperti tabel dibawah : 
+2. Setelah itu, tentukan jumlah alamat IP yang dibutuhkan seperti tabel dibawah : 
 |  Subnet |  Jumlah IP  |  Netmask  |
 | ------  | ----- | ------- |
-|   A1    |  512  |   /22   |
-|   A2    |  31   |   /22   |
-|   A3    |   2   |   /22   |
-|   A4    |  255  |   /22   |
-|   A5    |   2   |   /22   |
-|   A6    |   2   |   /22   |
-|   A7    |  251  |   /22   |
-|   A8    | 1001  |   /22   |
-|   A9    |   2   |   /22   |
-|   A10   |   2   |   /22   |
-|   A11   |  127  |   /22   |
-|   A12   |   2   |   /22   |
-|   A13   |   25  |   /22   |
-|   A14   |   2   |   /22   |
-|   A15   |   2   |   /22   |
-|   A16   |  1023 |   /22   |
-|   A17   |  1001 |   /22   |
-|   A18   |   2   |   /22   |
-|   A19   |   6   |   /22   |
-|   A20   |   3   |   /22   |
-|   A21   |   2   |   /22   |
-|  **TOTAL**  |  **4255** |   **/19**   |
+|   A1    |   2   |   /30   |
+|   A2    |   2   |   /30   |
+|   A3    |   66  |   /25   |
+|   A4    |  256  |   /23   |
+|   A5    |   2   |   /30   |
+|   A6    |   2   |   /30   |
+|   A7    |   2   |   /30   |
+|   A8    |   2   |   /30   |
+|   A9    | 1023  |   /21   |
+|   A10   |  514  |   /22   |
+|  **TOTAL**  |  **1871** |   **/21**   |
 
 <br>
-3. Sehingga akan dihasilkan sebuah tree yang dimana IP-nya akan diatur tiap interface sesuai dengan aturan subnetting yang darinya didapatkan Network ID, Broadcast Address, dan Available Hosts. Kita dapat lihat di bagian A1, switch8 akan terhubung ke 510 host-server Sein-Heiter sehingga total IP agar terhubung antar kakinya ada 512.
-<img width="4539" alt="tree" src="https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/ca23f508-a991-40bb-a98b-880b42c22781">
+3. Sehingga akan dihasilkan sebuah tree yang dimana IP-nya akan diatur tiap interface sesuai dengan aturan subnetting yang darinya didapatkan Network ID, Broadcast Address, dan Available Hosts. 
+<img width="3175" alt="Untitled (Copy)" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/d66d12ae-8c62-410e-82e6-8a17d408852f">
 <br>
 Sebelum melakukan konfigurasi dan routing : <br>
 
@@ -62,309 +48,74 @@ dan PADA _root/.bashrc_ di tiap node TAMBAHKAN : _echo nameserver 192.168.122.1 
 <br>
 Configurasi : 
 ```bash
-Aura -> Cloud
+Aura -> NAT
 auto eth0
 iface eth0 inet dhcp
- 
-Aura -> Denken
+
+Aura -> Heiter
 auto eth1
 iface eth1 inet static
-    	address 10.20.0.17
-    	netmask 255.255.255.252
- 
+        address 10.20.0.21
+        netmask 255.255.255.252
+
 Aura -> Frieren
 auto eth2
 iface eth2 inet static
-     	address 10.20.0.21
-     	netmask 255.255.255.252
- 
-Aura -> Eisen
-auto eth3
-iface eth3 inet static
-    	address 10.20.0.13
-    	netmask 255.255.255.252
+         address 10.20.0.17
+         netmask 255.255.255.252
 ```
 Routing :
 ```bash
-route add -net 10.20.8.0 netmask 255.255.252.0 gw 10.20.0.14
-route add -net 10.20.0.128 netmask 255.255.255.192 gw 10.20.0.14
-route add -net 10.20.0.0 netmask 255.255.255.252 gw 10.20.0.14
-route add -net 10.20.4.0 netmask 255.255.254.0 gw 10.20.0.14
-route add -net 10.20.0.4 netmask 255.255.255.252 gw 10.20.0.14
-route add -net 10.20.0.8 netmask 255.255.255.252 gw 10.20.0.14
-route add -net 10.20.1.0 netmask 255.255.255.0 gw 10.20.0.14
-route add -net 10.20.12.0 netmask 255.255.252.0 gw 10.20.0.14
-route add -net 10.20.0.48 netmask 255.255.255.248 gw 10.20.0.14
-route add -net 10.20.0.36 netmask 255.255.255.252 gw 10.20.0.14
-route add -net 10.20.2.0 netmask 255.255.255.0 gw 10.20.0.18
-route add -net 10.20.0.64 netmask 255.255.255.224 gw 10.20.0.22
-route add -net 10.20.0.24 netmask 255.255.255.252 gw 10.20.0.22
-route add -net 10.20.0.28 netmask 255.255.255.252 gw 10.20.0.22
-route add -net 10.20.24.0 netmask 255.255.248.0 gw 10.20.0.22
-route add -net 10.20.16.0 netmask 255.255.252.0 gw 10.20.0.22
-route add -net 10.20.0.32 netmask 255.255.255.252 gw 10.20.0.22
-route add -net 10.20.0.40 netmask 255.255.255.248 gw 10.20.0.22
+ route add -net 10.20.8.0 netmask 255.255.248.0 gw 10.20.0.22
+ route add -net 10.20.4.0 netmask 255.255.252.0 gw 10.20.0.22
+ route add -net 10.20.0.0 netmask 255.255.255.252 gw 10.20.0.18
+ route add -net 10.20.0.4 netmask 255.255.255.252 gw 10.20.0.18
+ route add -net 10.20.0.128 netmask 255.255.255.128 gw 10.20.0.18
+ route add -net 10.20.2.0 netmask 255.255.254.0 gw 10.20.0.18
+ route add -net 10.20.0.8 netmask 255.255.255.252 gw 10.20.0.18
+ route add -net 10.20.0.12 netmask 255.255.255.252 gw 10.20.0.18
 ```
-**Denken (ROUTER)**
-<br>
-Config :
-```bash
-Denken -> Aura
-auto eth0
-iface eth0 inet static
-    	address 10.20.0.18
-    	netmask 255.255.255.252
-   gateway 10.20.0.17
- 
- 
-Denken -> RoyalCapital & WilleRegion
-auto eth1
-iface eth1 inet static
-    	address 10.20.2.1
-    	netmask 255.255.255.0
-``` 
-Routing :
-```bash
-route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.20.0.17
- ```
-
-**RoyalCapital (CLIENT)**
-<br>
-Config :
-```bash
-RoyalCapital -> Denken
-auto eth0
-iface eth0 inet static
-      	address 10.20.2.2
-      	netmask 255.255.255.0
-      	gateway 10.20.2.1
- ```
- 
-**WillieRegion (CLIENT)**
-<br>
-Config :
-```
-WilleRegion -> Denken
-auto eth0
-iface eth0 inet static
-      	address 10.20.2.3
-      	netmask 255.255.255.0
-      	gateway 10.20.2.1
-```bash
- 
-**Eisen (ROUTER)**
-<br>
-Config :
-```bash
-Eisen -> Aura
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.14
-      	netmask 255.255.255.252
-       gateway 10.20.0.13
- 
-Eisen -> Stark
-auto eth3
-iface eth3 inet static
-      	address 10.20.0.37
-      	netmask 255.255.255.252
- 
-Eisen -> Linie
-auto eth1
-iface eth1 inet static
-      	address 10.20.0.5
-      	netmask 255.255.255.252
- 
-Eisen -> Richter & Revolte
-auto eth2
-iface eth2 inet static
-      	address 10.20.0.49
-      	netmask 255.255.255.248
- 
-Eisen -> Lugner
-auto eth4
-iface eth4 inet static
-      	address 10.20.0.9
-      	netmask 255.255.255.252
-```
- 
-Routing :
-```bash
-route add -net 10.20.12.0 netmask 255.255.252.0 gw 10.20.0.10
-route add -net 10.20.1.0 netmask 255.255.255.0 gw 10.20.0.10
-route add -net 10.20.0.0 netmask 255.255.255.252 gw 10.20.0.6
-route add -net 10.20.0.128 netmask 255.255.255.192 gw 10.20.0.6
-route add -net 10.20.8.0 netmask 255.255.252.0 gw 10.20.0.6
-route add -net 10.20.4.0 netmask 255.255.254.0 gw 10.20.0.6
- ```
- 
-**Stark (SERVER)**
-<br>
-Config :
-```bash
-Stark -> Eisen
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.38
-      	netmask 255.255.255.252
-      	gateway 10.20.0.37
- ```
-
-**Lugner (ROUTER)**
-<br>
-Config :
-```bash
-Lugner -> Eisen
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.10
-      	netmask 255.255.255.252
-    	  gateway 10.20.0.9
- 
-Lugner -> TurkRegion
-auto eth1
-iface eth1 inet static
-      	address 10.20.12.1
-      	netmask 255.255.252.0
- 
-Lugner -> GrabeForest
-auto eth2
-iface eth2 inet static
-      	address 10.20.1.1
-      	netmask 255.255.255.0
-``` 
-Routing :
-```bash
-route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.20.0.9
- ```
- 
-**TurkRegion (CLIENT)**
-<br>
-Config :
-```bash
-TurkRegion -> Lugner
-auto eth0
-iface eth0 inet static
-      	address 10.20.12.2
-      	netmask 255.255.252.0
-      	gateway 10.20.12.1
-```
- 
-**GrabeForest (CLIENT)**
-<br>
-Config :
-```bash
-GrabeForest -> Lugner
-auto eth0
-iface eth0 inet static
-      	address 10.20.1.2
-      	netmask 255.255.255.0
-      	gateway 10.20.1.1
-``` 
-**Linie (ROUTER)**
-<br>
-Config :
-```bash
-Linie -> Eisen
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.6
-      	netmask 255.255.255.252
-    	  gateway 10.20.0.5
- 
-Linie -> Lawine
-auto eth1
-iface eth1 inet static
-      	address 10.20.0.1
-      	netmask 255.255.255.252
- 
-Linie -> GranzChannel
-auto eth2
-iface eth2 inet static
-      	address 10.20.4.1
-      	netmask 255.255.254.0
-``` 
-Routing :
-```bash
- route add -net 10.20.0.128 netmask 255.255.255.192 gw 10.20.0.2
- route add -net 10.20.8.0 netmask 255.255.252.0 gw 10.20.0.2
- ```
-**GranzChannel (CLIENT)**
-<br>
-Config :
-```bash
-GranzChannel -> Linie
-auto eth0
-iface eth0 inet static
-      	address 10.20.4.2
-      	netmask 255.255.254.0
-      	gateway 10.20.4.1
- ```
-**Lawine (ROUTER)**
-<br>
-Config :
-```bash
-Lawine -> Linie
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.2
-      	netmask 255.255.255.252
-    	  gateway 10.20.0.1
- 
-Lawine -> BredtRegion & Heiter
-auto eth1
-iface eth1 inet static
-      	address 10.20.0.129
-      	netmask 255.255.255.192
-``` 
-Routing :
-```bash
- route add -net 10.20.8.0 netmask 255.255.252.0 gw 10.20.0.131
- ```
-
-**BredtRegion (CLIENT)**
-<br>
-Config :
-```bash
-BredtRegion -> Lawine
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.130
-      	netmask 255.255.255.192
-      	gateway 10.20.0.129
- ```
 **Heiter (ROUTER)**
 <br>
 Config :
 ```bash
-Heiter -> Lawine
+Heiter -> Aura
 auto eth0
 iface eth0 inet static
-      	address 10.20.0.131
-      	netmask 255.255.255.192
-    	  gateway 10.20.0.129
- 
-Heiter -> RiegelCanyon & Sein
+        address 10.20.0.22
+        netmask 255.255.255.252
+   gateway 10.20.0.21
+
+
+Heiter -> TurkRegion
 auto eth1
 iface eth1 inet static
-      	address 10.20.8.1
-      	netmask 255.255.252.0
+        address 10.20.8.1
+        netmask 255.255.248.0
+
+Heiter -> Switch 3
+auto eth2
+iface eth2 inet static
+        address 10.20.4.1
+        netmask 255.255.252.0
 ``` 
 Routing :
 ```bash
-route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.20.0.129
-``` 
-**RiegelCanyon (CLIENT)**
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.20.0.21
+ ```
+
+**TurkRegion  (CLIENT)**
 <br>
 Config :
 ```bash
-RiegelCanyon -> Heiter
+TurkRegion -> Heiter
 auto eth0
 iface eth0 inet static
-      	address 10.20.8.2
-      	netmask 255.255.252.0
-      	gateway 10.20.8.1
+          address 10.20.8.2
+          netmask 255.255.248.0
+          gateway 10.20.8.1
  ```
+ 
 **Sein (SERVER)**
 <br>
 Config :
@@ -372,32 +123,22 @@ Config :
 Sein -> Heiter
 auto eth0
 iface eth0 inet static
-      	address 10.20.8.3
-      	netmask 255.255.252.0
-      	gateway 10.20.8.1
+          address 10.20.4.2
+          netmask 255.255.252.0
+          gateway 10.20.4.1
 ```
-**Richter (SERVER)**
+ 
+**GrabForest (CLIENT)**
 <br>
 Config :
 ```bash
-Richter -> Eisen
+GrabForest -> Heiter
 auto eth0
 iface eth0 inet static
-      	address 10.20.0.50
-      	netmask 255.255.255.248
-      	gateway 10.20.0.49
- ```
-**Revolte (SERVER)**
-<br>
-Config :
-```bash
-Revolte -> Eisen
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.51
-      	netmask 255.255.255.248
-      	gateway 10.20.0.49
- ```
+          address 10.20.4.3
+          netmask 255.255.252.0
+          gateway 10.20.4.1
+```
  
 **Frieren (ROUTER)**
 <br>
@@ -406,164 +147,216 @@ Config :
 Frieren -> Aura
 auto eth0
 iface eth0 inet static
-      	address 10.20.0.22
-      	netmask 255.255.255.252
-    	  gateway 10.20.0.21
- 
-Frieren -> LakeKorridor
-auto eth2
-iface eth2 inet static
-      	address 10.20.0.65
-      	netmask 255.255.255.224
- 
-Frieren -> Flamme
+        address 10.20.0.18
+        netmask 255.255.255.252
+   gateway 10.20.0.17
+
+
+Frieren -> Stark
 auto eth1
 iface eth1 inet static
-      	address 10.20.0.25
-      	netmask 255.255.255.252
-``` 
+        address 10.20.0.13
+        netmask 255.255.255.252
+
+Frieren -> Himmel
+auto eth2
+iface eth2 inet static
+        address 10.20.0.9
+        netmask 255.255.255.252
+ ```
 Routing :
 ```bash
- route add -net 10.20.0.28 netmask 255.255.255.252 gw 10.20.0.26
- route add -net 10.20.24.0 netmask 255.255.248.0 gw 10.20.0.26
- route add -net 10.20.16.0 netmask 255.255.252.0 gw 10.20.0.26
- route add -net 10.20.0.32 netmask 255.255.255.252 gw 10.20.0.26
- route add -net 10.20.0.40 netmask 255.255.255.248 gw 10.20.0.26
+route add -net 10.20.0.0 netmask 255.255.255.252 gw 10.20.0.10
+route add -net 10.20.0.4 netmask 255.255.255.252 gw 10.20.0.10
+route add -net 10.20.0.128 netmask 255.255.255.128 gw 10.20.0.10
+route add -net 10.20.2.0 netmask 255.255.254.0 gw 10.20.0.10
  ```
-**Flamme (ROUTER)**
+
+**Stark (SERVER)**
 <br>
 Config :
 ```bash
-Flamme -> Frieren
+Stark -> Frieren
 auto eth0
 iface eth0 inet static
-      	address 10.20.0.26
-      	netmask 255.255.255.252
-    	  gateway 10.20.0.25
+          address 10.20.0.14
+          netmask 255.255.255.252
+          gateway 10.20.0.13
+```
  
-Flamme -> Fern
-auto eth1
-iface eth1 inet static
-      	address 10.20.0.29
-      	netmask 255.255.255.252
- 
-Flamme -> RohrRoad
-auto eth2
-iface eth2 inet static
-      	address 10.20.16.1
-      	netmask 255.255.252.0
- 
-Flamme -> Himmel
-auto eth3
-iface eth3 inet static
-      	address 10.20.0.33
-      	netmask 255.255.255.252
- ```
-Routing :
-```bash
- route add -net 10.20.24.0 netmask 255.255.248.0 gw 10.20.0.30
- route add -net 10.20.0.40 netmask 255.255.255.248 gw 10.20.0.34
- ```
 **Himmel (ROUTER)**
 <br>
 Config :
 ```bash
-Himmel  -> SchwerMountains
+Himmel -> Frieren
+auto eth0
+iface eth0 inet static
+        address 10.20.0.10
+        netmask 255.255.255.252
+   gateway 10.20.0.9
+
+
+Himmel -> LaubHills
 auto eth1
 iface eth1 inet static
-      	address 10.20.0.41
-      	netmask 255.255.255.248
- 
-Himmel  -> Flamme
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.34
-      	netmask 255.255.255.252
-    	  gateway 10.20.0.33
-``` 
-Routing :
-```bash
-route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.20.0.33
-``` 
- 
-**SchwerMountains (CLIENT)**
-<br>
-Config :
-```bash
-SchwerMountains -> Himmel
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.42
-      	netmask 255.255.255.248
-      	gateway 10.20.0.41
-``` 
-**RohrRoad (CLIENT)**
-<br>
-Config :
-```bash
-RohrRoad -> Flamme
-auto eth0
-iface eth0 inet static
-      	address 10.20.16.2
-      	netmask 255.255.252.0
-      	gateway 10.20.16.1
+        address 10.20.2.1
+        netmask 255.255.254.0
+
+Himmel -> Switch 1
+auto eth2
+iface eth2 inet static
+        address 10.20.0.129
+        netmask 255.255.255.128
 ```
- 
-**Fern (ROUTER)**
-<br>
-Config :
-```bash
-Fern -> Flamme
-auto eth0
-iface eth0 inet static
-      	address 10.20.0.30
-      	netmask 255.255.255.252
-    	  gateway 10.20.0.29
- 
-Fern -> LaubHills & AppetitRegion
-auto eth1
-iface eth1 inet static
-      	address 10.20.24.1
-      	netmask 255.255.248.0
-``` 
 Routing :
 ```bash
-route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.20.0.29
-``` 
- 
-**AppetitRegion (CLIENT)**
-<br>
-Config :
-```bash
-AppetitRegion -> Fern
-auto eth0
-iface eth0 inet static
-      	address 10.20.24.2
-      	netmask 255.255.248.0
-      	gateway 10.20.24.1
-``` 
+route add -net 10.20.0.0 netmask 255.255.255.252 gw 10.20.0.131
+route add -net 10.20.0.4 netmask 255.255.255.252 gw 10.20.0.131
+ ```
+
 **LaubHills (CLIENT)**
 <br>
 Config :
 ```bash
-LaubHills -> Fern
+LaubHills -> Himmel
 auto eth0
 iface eth0 inet static
-      	address 10.20.24.3
-      	netmask 255.255.248.0
-      	gateway 10.20.24.1
-``` 
-**LakeKorridor (CLIENT)**
+          address 10.20.2.2
+          netmask 255.255.254.0
+          gateway 10.20.2.1
+```
+
+**SchwerMountain (CLIENT)**
 <br>
 Config :
 ```bash
-LakeKorridor -> Frieren
+SchwerMountain -> Himmel
 auto eth0
 iface eth0 inet static
-      	address 10.20.0.66
-      	netmask 255.255.255.224
-      	gateway 10.20.0.65
+          address 10.20.0.130
+          netmask 255.255.255.128
+          gateway 10.20.0.129
 ``` 
+
+**Fern (ROUTER)**
+<br>
+Config :
+```bash
+Fern -> Himmel
+auto eth0
+iface eth0 inet static
+        address 10.20.0.131
+        netmask 255.255.255.128
+   gateway 10.20.0.129
+
+Fern -> Richter
+auto eth2
+iface eth2 inet static
+        address 10.20.0.5
+        netmask 255.255.255.252
+
+Fern -> Switch 2
+auto eth1
+iface eth1 inet static
+        address 10.20.0.1
+        netmask 255.255.255.252
+ ```
+Routing :
+```bash
+ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.20.0.129
+```
+
+**Richter (SERVER)**
+<br>
+Config :
+```bash
+Richter -> Fern
+auto eth0
+iface eth0 inet static
+          address 10.20.0.6
+          netmask 255.255.255.252
+          gateway 10.20.0.5
+```
+
+**Revolte (SERVER)**
+<br>
+Config :
+```bash
+Revolte -> Fern
+auto eth0
+iface eth0 inet static
+          address 10.20.0.2
+          netmask 255.255.255.252
+          gateway 10.20.0.1
+ ```
+# **DHCP Server : Revolte**
+<br>
+```bash
+apt-get update
+apt-get install isc-dhcp-server
+nano /etc/default/isc-dhcp-server 
+#karena revolte menuju ke switch melalui eth0
+interfaces = “eth0”
+service isc-dhcp-server start
+<br>
+nano /etc/dhcp/dhcpd.conf
+``` 
+tambahkan script berikut :
+- SchwerMountain
+```bash
+subnet 10.20.0.128 netmask 255.255.255.128  {
+    range 10.20.0.130 10.20.0.254;
+    option routers 10.20.0.129;
+    option broadcast-address 10.20.0.255;
+    option domain-name-servers 10.20.0.6;
+    default-lease-time 600;
+    max-lease-time 7200;
+}
+```
+- LaubHills
+```bash
+subnet 10.20.2.0 netmask 255.255.254.0 {
+    range 10.20.2.2 10.20.3.254;
+    option routers 10.20.2.1;
+    option broadcast-address 10.20.3.255;
+    option domain-name-servers 10.20.0.6;
+    default-lease-time 600;
+    max-lease-time 7200;
+}
+```
+- TurkRegion
+```bash
+subnet 10.20.8.0 netmask 255.255.248.0 {
+    range 10.20.8.2 10.20.15.254;
+    option routers 10.20.8.1;
+    option broadcast-address 10.20.15.255;
+    option domain-name-servers 10.20.0.6;
+    default-lease-time 600;
+    max-lease-time 7200;
+}
+```
+- GrobeForest
+```bash
+subnet 10.20.4.0 netmask 255.255.252.0 {
+    range 10.20.4.2 10.20.7.254;
+    option routers 10.20.4.1;
+    option broadcast-address 10.20.7.255;
+    option domain-name-servers 10.20.0.6;
+    default-lease-time 600;
+    max-lease-time 7200;
+}
+```
+- Revolte -> Fern
+```bash
+subnet 10.20.0.0 netmask 255.255.255.252 {
+    option routers 10.20.0.1;
+}
+```
+```bash
+service isc-dhcp-server restart
+service isc-dhcp-server status
+```
+
 # **VLSM Testing** 
 | Aura - A1                 | Aura - A12   | Aura - A4           |
 | ------------------------- | ------------ | ------------------- |

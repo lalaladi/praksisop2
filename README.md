@@ -289,6 +289,7 @@ iface eth0 inet static
           netmask 255.255.255.252
           gateway 10.20.0.1
  ```
+
 # **DHCP Server : Revolte**
 <br>
 ```bash
@@ -356,21 +357,60 @@ subnet 10.20.0.0 netmask 255.255.255.252 {
 service isc-dhcp-server restart
 service isc-dhcp-server status
 ```
+lalu pada router Himmel, Fern, dan Heiter, lakukan :
+```bash
+SERVERS="10.20.0.2"  
+INTERFACES=" eth0 eth1 eth2"
+OPTIONS=
+```
+service isc-dhcp-relay restart
 
-# **VLSM Testing** 
-| Aura - A1                 | Aura - A12   | Aura - A4           |
-| ------------------------- | ------------ | ------------------- |
-|![ping A1](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/1a1d18c0-5265-4f04-8ec7-ad8aa9a4b123)   | ![ping A2](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/77eb6a31-f560-497c-a8f7-4a4a4b361c3b) | ![ping A4](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/57fc4538-4922-4b7d-be29-71448ff0244e) |
+# **DHCP Client :** 
+pada : <br>
+- SchwerMountain
+- LaubHills
+- TurkRegion
+- GrobeForest <br>
+Isi pada ```bash nano /etc/network/interfaces``` :
+```bash
+auto eth0
+iface eth0 inet dhcp
+```
+lalu hapus konfigurasi statis yang ada address, netmask, gateway yang lama. <br>
+Hasilnya akan terlihat seperti ini :
+|      TurkRegion     |   SchwerMountain   |
+| ------------------- | ------------------ |
+|![Turk](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/cccf65cb-73cd-4f34-96c3-49aabec9cb2c)   | ![Schwer](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/192363eb-af4a-458e-94b8-370692a094d5) | 
 
-| Aura - A7                 | Aura - A8  | Aura - A11          |
-| ------------------------- | ---------- | ------------------- |
-| ![ping A7](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/3c4ce0af-da4e-4425-8c84-1e2bb3042741)  | ![ping A8](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/ca4bf93e-9f36-40a7-a9b5-aeef65f13990) | ![ping A11](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/4d1a828f-c1ac-4aac-ab2a-b10d5a270cd0) |
-                                                      
-| Aura - A13                | Aura - A16 | Aura - A17          |
-| ------------------------- | ---------- | ------------------- |
-| ![ping A13](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/ff29a65c-629c-4108-b86c-7f18eb4f93cf)  | ![ping A16](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/6802a251-c2de-44c4-8dd8-7010aa9530a7) | ![ping A17](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/4635bd3d-8062-4fcf-ad93-ddd2af1de851) |
+|     LaubHills     |    GrobeForest    |
+| ----------------- | ----------------- |
+|![Laub](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/a7d14d31-0723-4f0e-b557-b57811900737)   | ![Grobe](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/a73864d7-3a83-4151-a8d1-73e2ba4875de) | 
 
-| Aura - Switch 9           | Frieren - Lugner  |
-| ------------------------- | ----------------- |
-| ![ping Switch 9](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/41a2f3db-2c85-487e-bcb7-e4018d977b3b)  | ![ping Frieren - Lugner](https://github.com/lalaladi/Jarkom-Modul-2-B23-2023/assets/90541607/04e62753-e229-49c8-b003-febe0ffa2069)
- |
+# **DNS SERVER : Richter** 
+```bash
+apt-get clean
+apt-get update
+apt-get install bind9 -y
+konfigurasi IP Forward :
+/etc/bind/named.conf.options
+```
+![dns_server](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/bf8b1f69-f67d-4ce4-bf2a-8fcb65076454)
+<br>
+service bind9 restart
+
+# **WEB SERVER (SEIN & STARK) :** 
+```bash
+apt-get clean
+apt-get update
+apt-get install apache2 -y
+service apache2 start
+/etc/apache2/sites-available/000-default.conf
+nano /var/www/html/index.php
+<?php
+	phpinfo();
+?>
+apt-get install libapache2-mod-php7.0
+/etc/apache2/ports.conf
+Tambahkan ‘Listen 443’
+service apache2 restart
+```

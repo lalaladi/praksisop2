@@ -432,10 +432,10 @@ iptables -t nat -A POSTROUTING -o eth0 -s 10.20.0.0/21 -j SNAT --to-source "$IPE
 **testing**
 <br>
 Ping google di SEIN <br>
-- Sebelum :
+* Sebelum :
 <img width="295" alt="1 Before" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/fc11045f-b623-4780-b529-b1b9b4fe8ecb">
 <br> 
-- Sesudah :<br>
+* Sesudah :<br>
   Masukkan echo nameserver 192.168.122.1 > /etc/resolv.conf pada Sein
 <img width="361" alt="2  after" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/e5c278ed-95a7-407f-9107-a0a8f0065ed5">
 <br>
@@ -468,7 +468,7 @@ Uji hanya menerima tcp port 8080 : <br>
 <img width="220" alt="3aa" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/d68189e1-4499-4a9a-9cf7-c691f0c843b2">
 
 ## **Soal Nomor 3**
-Kepala Suku North Area meminta kalian untuk membatasi DHCP dan DNS Server hanya dapat dilakukan ping oleh maksimal 3 device secara bersamaan, selebihnya akan di drop.
+Kepala Suku North Area meminta kalian untuk membatasi DHCP dan DNS Server hanya dapat dilakukan ping oleh maksimal 3 device secara bersamaan, selebihnya akan di drop.<br>
 <br>**Langkah Penyelesaian Soal 3 :** <br>
 Lakukan di Revolte atau Richter 
 ```bash
@@ -481,7 +481,7 @@ iptables -A INPUT -p icmp --icmp-type echo-request -m connlimit --connlimit-abov
 ![3_4](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/6109b068-1685-4e42-9ed4-7fd67aae251c)
 
 ## **Soal Nomor 4**
-Lakukan pembatasan sehingga koneksi SSH pada Web Server hanya dapat dilakukan oleh masyarakat yang berada pada GrobeForest.
+Lakukan pembatasan sehingga koneksi SSH pada Web Server hanya dapat dilakukan oleh masyarakat yang berada pada GrobeForest.<br>
 <br>**Langkah Penyelesaian Soal 4 :** <br>
 * port 22 (port default SSH) dan Protokol yang biasanya digunakan untuk koneksi SSH
 * Karena IP client akan selalu berganti sesuai yang diberikan oleh DHCP Server, maka lakukan di Sein atau Stark :
@@ -491,16 +491,16 @@ iptables -A INPUT -p tcp --dport 22 -j DROP
 ```
 **testing**
 <br>
-* berhasil
+* berhasil <br>
 ![4b](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/3a72c184-671a-42a9-b54c-3880693ac446)
 ![4bb](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/85d86b58-517b-4761-9577-ad51aa29e4c5)
 <br>
-* gagal
+* gagal <br>
 ![4g](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/16aa868d-9e5c-4106-938a-5807211c765b)
 ![4gg](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/b0925bd5-bc9f-4450-95ce-097e7f1ede51)
 
 ## **Soal Nomor 5**
-Selain itu, akses menuju WebServer hanya diperbolehkan saat jam kerja yaitu Senin-Jumat pada pukul 08.00-16.00.
+Selain itu, akses menuju WebServer hanya diperbolehkan saat jam kerja yaitu Senin-Jumat pada pukul 08.00-16.00.<br>
 <br>**Langkah Penyelesaian Soal 5 :** <br>
 Lakukan di Sein atau Stark : 
 ```bash
@@ -510,10 +510,10 @@ iptables -A INPUT -j REJECT
 ```
 **Testing**
 <br>
-date -s "19 DEC 2023 14:00:00"
+date -s "19 DEC 2023 14:00:00" <br>
 ![5_1](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/cc2b2952-ed26-4c22-af7e-5058c1092f0c)
 ![5_11](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/5a38ff70-285c-4409-9f90-38fc3a0ae1ad)
 <br>
-date -s "19 DEC 2023 18:00:00"
+date -s "19 DEC 2023 18:00:00" <br>
 ![5_2](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/edd62869-a8df-4c40-a76f-fdedf2a9e06d)
 ![5_22](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/1baba45a-ed65-46b6-8fae-99c214b51268)

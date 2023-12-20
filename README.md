@@ -516,3 +516,24 @@ date -s "19 DEC 2023 14:00:00" <br>
 date -s "19 DEC 2023 18:00:00" <br>
 ![5_2](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/edd62869-a8df-4c40-a76f-fdedf2a9e06d)
 ![5_22](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/1baba45a-ed65-46b6-8fae-99c214b51268)
+
+## **Soal Nomor 6**
+Lalu, karena ternyata terdapat beberapa waktu di mana network administrator dari WebServer tidak bisa stand by, sehingga perlu ditambahkan rule bahwa akses pada hari Senin - Kamis pada jam 12.00 - 13.00 dilarang (istirahat maksi cuy) dan akses di hari Jumat pada jam 11.00 - 13.00 juga dilarang (maklum, Jumatan rek).<br>
+<br>**Langkah Penyelesaian Soal 6 :** <br>
+
+## **Soal Nomor 7**
+Karena terdapat 2 WebServer, kalian diminta agar setiap client yang mengakses Sein dengan Port 80 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan dan request dari client yang mengakses Stark dengan port 443 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan.<br>
+<br>**Langkah Penyelesaian Soal 7 :** <br>
+
+## **Soal Nomor 8**
+Karena berbeda koalisi politik, maka subnet dengan masyarakat yang berada pada Revolte dilarang keras mengakses WebServer hingga masa pencoblosan pemilu kepala suku 2024 berakhir. Masa pemilu (hingga pemungutan dan penghitungan suara selesai) kepala suku bersamaan dengan masa pemilu Presiden dan Wakil Presiden Indonesia 2024.<br>
+<br>**Langkah Penyelesaian Soal 8 :** <br>
+
+## **Soal Nomor 9**
+Sadar akan adanya potensial saling serang antar kubu politik, maka WebServer harus dapat secara otomatis memblokir  alamat IP yang melakukan scanning port dalam jumlah banyak (maksimal 20 scan port) di dalam selang waktu 10 menit. 
+(clue: test dengan nmap) <br>
+<br>**Langkah Penyelesaian Soal 9 :** <br>
+
+## **Soal Nomor 10**
+Karena kepala suku ingin tau paket apa saja yang di-drop, maka di setiap node server dan router ditambahkan logging paket yang di-drop dengan standard syslog level. <br>
+<br>**Langkah Penyelesaian Soal 10 :** <br>

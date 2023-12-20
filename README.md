@@ -422,7 +422,7 @@ Tambahkan ‘Listen 443’
 service apache2 restart
 ```
 ## **Soal Nomor 1**
-Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Aura menggunakan iptables, tetapi tidak ingin menggunakan MASQUERADE.
+Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Aura menggunakan iptables, tetapi tidak ingin menggunakan MASQUERADE.<br>
 <br>**Langkah Penyelesaian Soal 1 :** <br>
 sebelum paket keluar dia pasti keluar dari foosha maka pakai -s 10.20.0.0/21
 ```bash
@@ -433,7 +433,8 @@ iptables -t nat -A POSTROUTING -o eth0 -s 10.20.0.0/21 -j SNAT --to-source "$IPE
 <br>
 Ping google di SEIN <br>
 - Sebelum :
-<img width="295" alt="1 Before" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/fc11045f-b623-4780-b529-b1b9b4fe8ecb">  
+<img width="295" alt="1 Before" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/fc11045f-b623-4780-b529-b1b9b4fe8ecb">
+<br> 
 - Sesudah :<br>
   Masukkan echo nameserver 192.168.122.1 > /etc/resolv.conf pada Sein
 <img width="361" alt="2  after" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/e5c278ed-95a7-407f-9107-a0a8f0065ed5">
@@ -448,16 +449,22 @@ iptables -A INPUT -p tcp –-dport 8080 -j ACCEPT
 iptables -A INPUT -p tcp -j DROP
 iptables -A INPUT -p udp -j DROP
 ```
+<br>
+
 **testing**
 <br>
 Uji menolak tcp dan udp :
 <img width="220" alt="1r" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/33306c71-6ed4-459f-96e5-475d6f0125cd">
+<br>
 <img width="139" alt="1rr" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/83f91f30-ccff-40f6-8e82-f0123140b170">
+<br>
 <img width="226" alt="2r" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/146612de-ccce-4926-8fd1-05674fd8e958">
+<br>
 <img width="133" alt="2rr" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/1d19cad2-3ec4-4982-87c2-4c2995af3900">
 <br>
-Uji hanya menerima tcp port 8080 : 
+Uji hanya menerima tcp port 8080 : <br>
 <img width="148" alt="3a" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/747c16df-4e56-42cb-b452-dc856852b1ff">
+<br>
 <img width="220" alt="3aa" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/d68189e1-4499-4a9a-9cf7-c691f0c843b2">
 
 ## **Soal Nomor 3**

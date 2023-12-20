@@ -441,7 +441,7 @@ Ping google di SEIN <br>
 <br>
 
 ## **Soal Nomor 2**
-Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
+Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.<br>
 <br>**Langkah Penyelesaian Soal 2 :** <br>
 Karena kita akan mencoba antara Revolte-SchewerMountains maka di Revolte:
 ```bash
@@ -453,7 +453,7 @@ iptables -A INPUT -p udp -j DROP
 
 **testing**
 <br>
-Uji menolak tcp dan udp :
+Uji menolak tcp dan udp : <br>
 <img width="220" alt="1r" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/33306c71-6ed4-459f-96e5-475d6f0125cd">
 <br>
 <img width="139" alt="1rr" src="https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/83f91f30-ccff-40f6-8e82-f0123140b170">

@@ -495,7 +495,7 @@ iptables -A INPUT -p tcp --dport 22 -j DROP
 ![4b](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/3a72c184-671a-42a9-b54c-3880693ac446)
 ![4bb](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/85d86b58-517b-4761-9577-ad51aa29e4c5)
 <br>
-* gagal<br>
+* gagal <br>
 ![4g](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/16aa868d-9e5c-4106-938a-5807211c765b)
 ![4gg](https://github.com/lalaladi/Jarkom-Modul-5-B23/assets/90541607/b0925bd5-bc9f-4450-95ce-097e7f1ede51)
 
